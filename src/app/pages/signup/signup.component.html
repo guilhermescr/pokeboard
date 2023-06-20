@@ -1,0 +1,46 @@
+<form>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Sign Up</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <mat-form-field>
+        <label>Name</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          formControlName="name"
+          placeholder="Name..."
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <label>E-mail</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          formControlName="email"
+          placeholder="E-mail..."
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <label>Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          formControlName="password"
+          placeholder="Password..."
+        />
+      </mat-form-field>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button (click)="onClick()" mat-raised-button>Create Account</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
