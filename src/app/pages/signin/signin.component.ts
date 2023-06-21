@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
@@ -8,7 +9,11 @@ import { AuthService } from 'src/app/shared/services/auth.service';
   styleUrls: ['./signin.component.scss'],
 })
 export class SigninComponent {
-  constructor(private fb: FormBuilder, private authService: AuthService) {}
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   signInForm = this.fb.group({
     email: [
@@ -25,7 +30,12 @@ export class SigninComponent {
   ngOnInit(): void {
     this.signInForm.valueChanges.subscribe(() => {
       this.accountNotFound = false;
-    })
+    });
+
+    if (this.authService.getCurrentUser()) {
+      this.authService.logOut();
+      this.router.navigateByUrl('/signin');
+    }
   }
 
   onClick(): void {

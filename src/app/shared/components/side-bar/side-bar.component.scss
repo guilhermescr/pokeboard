@@ -1,0 +1,156 @@
+@use "../../../../assets/utilities/mixins";
+
+:host {
+  position: relative;
+
+  @keyframes sideBarMovement {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  .side-bar {
+    animation: sideBarMovement 0.15s linear;
+    background-color: #9d171b;
+    @include mixins.flex-center(column);
+    height: 100%;
+    gap: 20px;
+    justify-content: flex-start;
+    min-width: 247.5px;
+    padding-block: 20px;
+
+    * {
+      color: #fff;
+    }
+
+    .side-bar__close-side-bar-button {
+      align-self: flex-end;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      margin-right: 20px;
+      width: 30px;
+
+      &:hover {
+        svg {
+          fill: #efefef;
+        }
+      }
+
+      &:active {
+        svg {
+          opacity: 0.9;
+        }
+      }
+
+      svg {
+        width: 100%;
+      }
+    }
+
+    .side-bar__header {
+      a {
+        text-decoration: none;
+
+        img {
+          display: block;
+          margin-bottom: 15px;
+          margin-inline: auto;
+          max-width: 130px;
+        }
+      }
+    }
+
+    .side-bar__list {
+      list-style: none;
+
+      li {
+        border-bottom: 2px solid #600e0e;
+        transition: all 0.15s ease-in-out;
+
+        &:first-child {
+          border-top: 2px solid #600e0e;
+        }
+
+        &:hover {
+          background-color: #731518;
+        }
+
+        &:active {
+          background-color: #6b1215;
+        }
+
+        a {
+          align-items: center;
+          cursor: pointer;
+          display: flex;
+          font-weight: bold;
+          gap: 25px;
+          justify-content: space-between;
+          padding: 20px 35px;
+          text-decoration: none;
+
+          .list-item-icon {
+            max-width: 20px;
+          }
+        }
+      }
+    }
+  }
+
+  .open-side-bar-burger-button {
+    background-color: #9d171b;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    @include mixins.flex-center(column);
+    gap: 6px;
+    left: 15px;
+    padding: 10px;
+    position: absolute;
+    top: 15px;
+    width: 45px;
+
+    &:hover {
+      background-color: #8d0308;
+    }
+
+    &:active {
+      opacity: 0.92;
+    }
+
+    .open-side-bar-burger-button__bar {
+      background-color: #fff;
+      height: 3px;
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  :host {
+    .side-bar {
+      left: 0;
+      min-width: auto;
+      overflow: auto;
+      position: fixed;
+      top: 0;
+      width: 100%;
+
+      .side-bar__header {
+        a {
+          img {
+            max-width: 80px;
+          }
+        }
+      }
+
+      .side-bar__list {
+        width: 100%;
+      }
+    }
+  }
+}

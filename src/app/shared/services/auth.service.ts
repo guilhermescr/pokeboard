@@ -8,11 +8,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   private currentUserSubject: BehaviorSubject<User | null> =
-    new BehaviorSubject<User | null>({
-      name: 'guiscr',
-      email: 'devguiga@gmail.com',
-      password: '#gui2023'
-    });
+    new BehaviorSubject<User | null>(null);
   public currentUser: Observable<User | null> =
     this.currentUserSubject.asObservable();
 
@@ -24,15 +20,27 @@ export class AuthService {
     this.users.push(user);
   }
 
-  logIn(user: User): void {
-    this.currentUserSubject.next(user);
-    this.router.navigateByUrl('/board');
+  logIn({ email }: User): void {
+    const userData = this.getAllDataAboutUser(email);
 
-    // show green popup alerting user that their account is fine and welcome them.
+    if (userData) {
+      this.currentUserSubject.next(userData);
+      this.router.navigateByUrl('/board');
+
+      // show green popup alerting user that their account is fine and welcome them.
+    }
   }
 
   logOut(): void {
+    /*
+      Delete Account Code:
+      this.users = this.users.filter(
+      (user) => user.email !== this.currentUserSubject.value?.email
+    );
+    */
+
     this.currentUserSubject.next(null);
+    this.router.navigateByUrl('/signin');
   }
 
   isNewAccount(user: User): boolean {
@@ -52,5 +60,15 @@ export class AuthService {
 
   isLoggedIn(): boolean {
     return this.currentUserSubject.value !== null;
+  }
+
+  getCurrentUser(): User | null {
+    return this.currentUserSubject.value;
+  }
+
+  getAllDataAboutUser(userEmail: string): User | null {
+    const allData = this.users.find((user) => user.email === userEmail);
+
+    return allData ? allData : null;
   }
 }

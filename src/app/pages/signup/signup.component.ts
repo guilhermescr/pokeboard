@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
@@ -8,7 +9,11 @@ import { AuthService } from 'src/app/shared/services/auth.service';
   styleUrls: ['./signup.component.scss'],
 })
 export class SignupComponent {
-  constructor(private fb: FormBuilder, private authService: AuthService) {}
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   signUpForm = this.fb.group({
     name: ['', Validators.required],
@@ -26,7 +31,12 @@ export class SignupComponent {
   ngOnInit(): void {
     this.signUpForm.valueChanges.subscribe(() => {
       this.accountDoesExist = false;
-    })
+    });
+
+    if (this.authService.getCurrentUser()) {
+      this.authService.logOut();
+      this.router.navigateByUrl('/signin');
+    }
   }
 
   onClick(): void {
