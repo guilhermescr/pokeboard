@@ -7,12 +7,30 @@ import { FavoritesComponent } from './pages/favorites/favorites.component';
 import { PokemonsComponent } from './pages/pokemons/pokemons.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { HomeComponent } from './pages/home/home.component';
+import { AuthGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
   {
-    path: '',
-    pathMatch: 'full',
-    component: HomeComponent,
+    path: 'board',
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        component: HomeComponent,
+      },
+      {
+        path: 'pokemons',
+        component: PokemonsComponent,
+      },
+      {
+        path: 'favorites',
+        component: FavoritesComponent,
+      },
+      {
+        path: 'my-profile',
+        component: MyProfileComponent,
+      },
+    ],
   },
   {
     path: 'signin',
@@ -23,16 +41,9 @@ const routes: Routes = [
     component: SignupComponent,
   },
   {
-    path: 'pokemons',
-    component: PokemonsComponent,
-  },
-  {
-    path: 'favorites',
-    component: FavoritesComponent,
-  },
-  {
-    path: 'my-profile',
-    component: MyProfileComponent,
+    path: '',
+    pathMatch: 'full',
+    redirectTo: '/board',
   },
   {
     path: '**',

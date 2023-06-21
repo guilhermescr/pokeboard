@@ -9,7 +9,7 @@ import { PokemonsComponent } from './pages/pokemons/pokemons.component';
 import { FavoritesComponent } from './pages/favorites/favorites.component';
 import { MyProfileComponent } from './pages/my-profile/my-profile.component';
 import { HomeComponent } from './pages/home/home.component';
-import { FormModule } from './shared/form/form.module';
+import { FormModule } from './shared/components/form/form.module';
 
 @NgModule({
   declarations: [

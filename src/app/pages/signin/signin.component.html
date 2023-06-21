@@ -1,1 +1,116 @@
-<p>signin works!</p>
+<form [formGroup]="signInForm">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title [ngClass]="'mat-card-title'">Sign In</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <mat-hint class="error-message outside-error" *ngIf="accountNotFound">
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Warning Icon"
+          fontIcon="warning"
+        ></mat-icon>
+        Account not found.</mat-hint
+      >
+
+      <div class="form-field">
+        <mat-hint
+          class="error-message"
+          *ngIf="
+            signInForm.controls.email.invalid &&
+            (signInForm.controls.email.dirty ||
+              signInForm.controls.email.touched)
+          "
+        >
+          <mat-icon
+            aria-hidden="false"
+            aria-label="Warning Icon"
+            fontIcon="warning"
+          ></mat-icon>
+          E-mail is required.</mat-hint
+        >
+
+        <div class="input-field">
+          <mat-icon
+            class="input-icon"
+            aria-hidden="false"
+            aria-label="E-mail Icon"
+            fontIcon="email"
+          ></mat-icon>
+
+          <input
+            matInput
+            type="email"
+            [class.error]="
+              signInForm.controls.email.invalid &&
+              (signInForm.controls.email.dirty ||
+                signInForm.controls.email.touched)
+            "
+            id="email"
+            name="email"
+            formControlName="email"
+            placeholder="E-mail..."
+            autocomplete="off"
+            required
+            title="Please enter a valid email address"
+          />
+        </div>
+      </div>
+
+      <div class="form-field">
+        <mat-hint
+          class="error-message"
+          *ngIf="
+            signInForm.controls.password.invalid &&
+            (signInForm.controls.password.dirty ||
+              signInForm.controls.password.touched)
+          "
+        >
+          <mat-icon
+            aria-hidden="false"
+            aria-label="Warning Icon"
+            fontIcon="warning"
+          ></mat-icon>
+          Password should have 8 characters or more</mat-hint
+        >
+
+        <div class="input-field">
+          <mat-icon
+            class="input-icon"
+            aria-hidden="false"
+            aria-label="Lock Icon"
+            fontIcon="lock"
+          ></mat-icon>
+
+          <input
+            matInput
+            type="password"
+            [class.error]="
+              signInForm.controls.password.invalid &&
+              (signInForm.controls.password.dirty ||
+                signInForm.controls.password.touched)
+            "
+            id="password"
+            name="password"
+            formControlName="password"
+            placeholder="Password..."
+            autocomplete="off"
+            required
+            minlength="8"
+          />
+        </div>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button type="button" (click)="onClick()" mat-raised-button>
+        Log In
+      </button>
+
+      <p class="other-auth-option">
+        Don't have an account? <a routerLink="/signup">Sign Up</a>
+      </p>
+    </mat-card-actions>
+  </mat-card>
+</form>
