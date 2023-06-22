@@ -9,7 +9,7 @@ import { PokeapiService } from 'src/app/shared/services/pokeapi.service';
 })
 export class PokemonsComponent {
   pokeSearchCurrentMode: string = 'Search By Name Mode';
-  searchPokemonInput: string = '';
+  pokemonIdentifier: string = '';
   pokemonNotFound: boolean = false;
   hasSearched: boolean = false;
   pokemonList: Pokemon[] = [];
@@ -22,20 +22,19 @@ export class PokemonsComponent {
   }
 
   getPokemonByIdentifier(): void {
-    this.hasSearched = false;
+    const isPokemonInPokemonList =
+      this.pokemonList.find(
+        ({ name, id }) =>
+          name === this.pokemonIdentifier ||
+          String(id) === this.pokemonIdentifier
+      ) !== undefined;
 
-    if (!this.searchPokemonInput.length) return;
+    if (isPokemonInPokemonList || !this.pokemonIdentifier.length) return;
 
     this.hasSearched = true;
 
-    this.pokeApiService.getPokemon(this.searchPokemonInput).subscribe({
+    this.pokeApiService.getPokemon(this.pokemonIdentifier).subscribe({
       next: (pokemonData) => {
-        const isPokemonInPokemonList =
-          this.pokemonList.find(({ name }) => name === pokemonData.name) !==
-          undefined;
-
-        if (isPokemonInPokemonList) return;
-
         const pokemon: Pokemon = {
           id: pokemonData.id,
           name: pokemonData.name,

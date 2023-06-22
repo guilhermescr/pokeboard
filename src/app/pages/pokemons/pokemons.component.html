@@ -7,7 +7,7 @@
         id="searchPokemonInput"
         class="mode-bar__input"
         placeholder="PokéName OR ID"
-        [(ngModel)]="searchPokemonInput"
+        [(ngModel)]="pokemonIdentifier"
         (ngModelChange)="handleChange()"
         *ngIf="
           pokeSearchCurrentMode === 'Search By Name Mode';
@@ -59,14 +59,14 @@
     A Pokémon card will show up here if you insert a name in the search bar.
   </p>
 
-  <p
-    class="center-message"
-    *ngIf="searchPokemonInput.length && pokemonNotFound"
-  >
+  <p class="center-message" *ngIf="pokemonIdentifier.length && pokemonNotFound">
     This Pokémon was not found. Check if you have written it correctly!
   </p>
 
   <section class="pokemon-cards" *ngIf="pokemonList.length">
-    <app-pokemon-card *ngFor="let pokemon of pokemonList" [pokemon]="pokemon"></app-pokemon-card>
+    <app-pokemon-card
+      *ngFor="let pokemon of pokemonList"
+      [pokemon]="pokemon"
+    ></app-pokemon-card>
   </section>
 </section>
