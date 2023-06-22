@@ -63,10 +63,10 @@
     This Pokémon was not found. Check if you have written it correctly!
   </p>
 
-  <section class="pokemon-cards" *ngIf="pokemonList.length">
+  <app-pokemon-cards *ngIf="pokemonList.length">
     <app-pokemon-card
       *ngFor="let pokemon of pokemonList"
       [pokemon]="pokemon"
     ></app-pokemon-card>
-  </section>
+  </app-pokemon-cards>
 </section>

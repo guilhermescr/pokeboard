@@ -7,9 +7,10 @@ import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { MatIconModule } from '@angular/material/icon';
 import { PokemonCardComponent } from './components/pokemon-card/pokemon-card.component';
 import { MatCardModule } from '@angular/material/card';
+import { PokemonCardsComponent } from './components/pokemon-cards/pokemon-cards.component';
 
 @NgModule({
-  declarations: [SideBarComponent, PokemonCardComponent],
+  declarations: [SideBarComponent, PokemonCardComponent, PokemonCardsComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -24,6 +25,7 @@ import { MatCardModule } from '@angular/material/card';
     HttpClientModule,
     BrowserAnimationsModule,
     SideBarComponent,
+    PokemonCardsComponent,
     PokemonCardComponent,
     MatIconModule,
   ],

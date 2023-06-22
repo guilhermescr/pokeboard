@@ -1,3 +1,14 @@
 <h2>Favorites</h2>
 
-<p class="center-message">There's no Favorite Pokémon in your list.</p>
+<app-pokemon-cards
+  *ngIf="favoritePokemonList.length; else showNoFavoritesMessage"
+>
+  <app-pokemon-card
+    *ngFor="let favoritePokemon of favoritePokemonList"
+    [pokemon]="favoritePokemon"
+  ></app-pokemon-card>
+</app-pokemon-cards>
+
+<ng-template #showNoFavoritesMessage>
+  <p class="center-message">There's no Favorite Pokémon in your list.</p>
+</ng-template>
