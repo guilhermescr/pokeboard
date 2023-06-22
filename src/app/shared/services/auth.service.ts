@@ -8,11 +8,21 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   private currentUserSubject: BehaviorSubject<User | null> =
-    new BehaviorSubject<User | null>(null);
+    new BehaviorSubject<User | null>({
+      name: 'guilhermescr',
+      email: 'devguiga@gmail.com',
+      password: 'omelhorem2023',
+    });
   public currentUser: Observable<User | null> =
     this.currentUserSubject.asObservable();
 
-  users: User[] = [];
+  users: User[] = [
+    {
+      name: 'guilhermescr',
+      email: 'devguiga@gmail.com',
+      password: 'omelhorem2023',
+    },
+  ];
 
   constructor(private router: Router) {}
 
