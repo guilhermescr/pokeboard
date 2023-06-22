@@ -1,0 +1,131 @@
+@use "../../../assets/utilities/mixins";
+
+:host {
+  @include mixins.flex-center(column);
+  padding: 30px 10px;
+  width: 100%;
+
+  .header-for-search-modes {
+    margin-bottom: auto;
+    max-width: 750px;
+    width: 100%;
+
+    form {
+      align-items: center;
+      display: flex;
+      gap: 15px;
+      justify-content: space-between;
+      width: 100%;
+
+      .mode-bar {
+        position: relative;
+        width: 100%;
+
+        input {
+          background-color: #2e1f1f;
+          border: 2px solid #fefefe;
+          border-radius: 20px;
+          color: #fff;
+          font-size: 16px;
+          font-weight: bold;
+          padding: 8px 12px;
+          width: 100%;
+
+          &:focus {
+            box-shadow: 0 0 7px brown;
+            outline: none;
+          }
+        }
+
+        button {
+          background-color: #fefefe;
+          border: none;
+          border-radius: 0 20px 20px 0;
+          cursor: pointer;
+          @include mixins.flex-center;
+          gap: 6px;
+          height: 99.8%;
+          font-size: 16px;
+          font-weight: bold;
+          padding-inline: 10px;
+          position: absolute;
+          right: 0;
+          top: 50%;
+          transform: translateY(-50%);
+
+          &:hover {
+            background-color: #efefef;
+          }
+
+          &:active {
+            background-color: #fefefedd;
+          }
+        }
+      }
+
+      .modes {
+        align-items: center;
+        display: flex;
+        gap: 10px;
+        justify-content: space-between;
+
+        label {
+          color: #fff;
+          font-size: 18px;
+          font-weight: bold;
+        }
+
+        select {
+          -moz-appearance: none; /* Firefox */
+          -webkit-appearance: none; /* Safari and Chrome */
+          appearance: none;
+          background-color: #2e1f1f;
+          border: 2px solid #fefefe;
+          border-radius: 4px;
+          color: #fff;
+          cursor: pointer;
+          font-size: 16px;
+          font-weight: bold;
+          padding: 10px;
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  .mode-container {
+    margin-bottom: auto;
+    padding: 20px 15px;
+    width: 100%;
+
+    .center-message {
+      color: #fff;
+      font-size: 25px;
+      font-weight: bold;
+      margin-inline: auto;
+      max-width: 450px;
+      text-align: center;
+    }
+
+    .pokemon-cards {
+      align-items: center;
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(auto-fit, 250px);
+      justify-content: center;
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  :host {
+    padding-top: 75px;
+
+    .header-for-search-modes {
+      form {
+        @include mixins.flex-center(column-reverse);
+      }
+    }
+  }
+}

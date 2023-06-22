@@ -5,15 +5,18 @@ import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { MatIconModule } from '@angular/material/icon';
+import { PokemonCardComponent } from './components/pokemon-card/pokemon-card.component';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
-  declarations: [SideBarComponent],
+  declarations: [SideBarComponent, PokemonCardComponent],
   imports: [
     CommonModule,
     RouterModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MatIconModule,
+    MatCardModule,
   ],
   exports: [
     CommonModule,
@@ -21,6 +24,7 @@ import { MatIconModule } from '@angular/material/icon';
     HttpClientModule,
     BrowserAnimationsModule,
     SideBarComponent,
+    PokemonCardComponent,
     MatIconModule,
   ],
 })

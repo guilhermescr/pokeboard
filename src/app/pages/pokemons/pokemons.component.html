@@ -1,1 +1,72 @@
-<p>pokemons works!</p>
+<header class="header-for-search-modes">
+  <form>
+    <div class="mode-bar">
+      <input
+        type="search"
+        name="searchPokemonInput"
+        id="searchPokemonInput"
+        class="mode-bar__input"
+        placeholder="PokéName OR ID"
+        [(ngModel)]="searchPokemonInput"
+        (ngModelChange)="handleChange()"
+        *ngIf="
+          pokeSearchCurrentMode === 'Search By Name Mode';
+          else showQuantityInput
+        "
+      />
+      <ng-template #showQuantityInput>
+        <input
+          type="number"
+          name="maxAmountOfPokeRequests"
+          id="maxAmountOfPokeRequests"
+          class="mode-bar__input"
+          placeholder="Amount of Pokémon"
+          (ngModelChange)="handleChange()"
+        />
+      </ng-template>
+
+      <button (click)="getPokemonByIdentifier()">
+        Search
+        <mat-icon
+          class="search-icon"
+          aria-hidden="false"
+          aria-label="Search Icon"
+          fontIcon="search"
+        ></mat-icon>
+      </button>
+    </div>
+
+    <div class="modes">
+      <label for="pokeSearchModes">Modes:</label>
+
+      <select
+        name="pokeSearchModes"
+        id="pokeSearchModes"
+        [(ngModel)]="pokeSearchCurrentMode"
+      >
+        <option>Search By Name Mode</option>
+        <option>Quantity Mode</option>
+      </select>
+    </div>
+  </form>
+</header>
+
+<section
+  class="searchByNameMode mode-container"
+  *ngIf="pokeSearchCurrentMode === 'Search By Name Mode'"
+>
+  <p class="center-message" *ngIf="!hasSearched">
+    A Pokémon card will show up here if you insert a name in the search bar.
+  </p>
+
+  <p
+    class="center-message"
+    *ngIf="searchPokemonInput.length && pokemonNotFound"
+  >
+    This Pokémon was not found. Check if you have written it correctly!
+  </p>
+
+  <section class="pokemon-cards" *ngIf="pokemonList.length">
+    <app-pokemon-card *ngFor="let pokemon of pokemonList" [pokemon]="pokemon"></app-pokemon-card>
+  </section>
+</section>

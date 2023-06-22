@@ -1,0 +1,42 @@
+<mat-card class="pokemon-card">
+  <mat-card-title-group>
+    <mat-card-title>{{ pokemon.name | titlecase }}</mat-card-title>
+
+    <mat-card-subtitle
+      *ngIf="pokemon.types.length === 1; else doubleType"
+      class="types"
+    >
+      <span [ngClass]="pokemon.types[0]">{{
+        pokemon.types[0] | titlecase
+      }}</span>
+    </mat-card-subtitle>
+
+    <ng-template #doubleType>
+      <mat-card-subtitle class="types">
+        <span [ngClass]="pokemon.types[0]">{{
+          pokemon.types[0] | titlecase
+        }}</span>
+        -
+        <span [ngClass]="pokemon.types[1]">{{
+          pokemon.types[1] | titlecase
+        }}</span>
+      </mat-card-subtitle>
+    </ng-template>
+  </mat-card-title-group>
+
+  <mat-card-content>
+    <img
+      [ngClass]="'pokemon-image'"
+      src="{{ pokemon.imgSrc }}"
+      alt="Pokémon {{ pokemon.name | titlecase }}"
+    />
+  </mat-card-content>
+
+  <mat-card-footer>
+    <img
+      [ngClass]="'pokemon-logo'"
+      src="https://i.pinimg.com/originals/29/d6/e9/29d6e9ae28a342b4addaa285cc8773d7.png"
+      alt="Pokémon Logo"
+    />
+  </mat-card-footer>
+</mat-card>

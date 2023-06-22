@@ -1,0 +1,42 @@
+@use "./types";
+
+:host {
+  height: max-content;
+
+  .pokemon-card {
+    cursor: pointer;
+    padding: 20px;
+    padding-bottom: 0;
+    transition: all 0.15s ease-in-out;
+
+    &:hover {
+      transform: scale(1.04);
+    }
+
+    &:active {
+      background-color: #efefef;
+    }
+
+    .types {
+      span {
+        font-weight: bold;
+      }
+    }
+
+    img {
+      display: block;
+      margin-inline: auto;
+      user-select: none;
+    }
+
+    .pokemon-image {
+      margin-top: 40px;
+      max-width: 130px;
+      width: 100%;
+    }
+
+    .pokemon-logo {
+      max-width: 100px;
+    }
+  }
+}

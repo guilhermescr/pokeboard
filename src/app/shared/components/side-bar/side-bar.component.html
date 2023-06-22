@@ -95,7 +95,7 @@
       </a>
     </li>
 
-    <li (click)="logout()">
+    <li (click)="logout()" tabindex="0">
       <a>
         Log Out
         <mat-icon
@@ -109,7 +109,7 @@
 </nav>
 
 <ng-template #showBurgerButton>
-  <button (click)="openSideBar()" class="open-side-bar-burger-button">
+  <button (click)="openSideBar()" class="open-side-bar-burger-button" tabindex="1">
     <span class="open-side-bar-burger-button__bar"></span>
     <span class="open-side-bar-burger-button__bar"></span>
     <span class="open-side-bar-burger-button__bar"></span>
