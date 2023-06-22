@@ -30,6 +30,12 @@ export class PokemonsComponent {
 
     this.pokeApiService.getPokemon(this.searchPokemonInput).subscribe({
       next: (pokemonData) => {
+        const isPokemonInPokemonList =
+          this.pokemonList.find(({ name }) => name === pokemonData.name) !==
+          undefined;
+
+        if (isPokemonInPokemonList) return;
+
         const pokemon: Pokemon = {
           id: pokemonData.id,
           name: pokemonData.name,
