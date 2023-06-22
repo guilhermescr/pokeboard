@@ -22,6 +22,13 @@ export class PokemonsComponent {
   }
 
   getPokemonByIdentifier(): void {
+    this.pokemonIdentifier = this.pokemonIdentifier
+      .split('')
+      .map((character) => {
+        return /^[A-Za-z0-9]*$/.test(character) ? character : '';
+      })
+      .join('');
+
     const isPokemonInPokemonList =
       this.pokemonList.find(
         ({ name, id }) =>

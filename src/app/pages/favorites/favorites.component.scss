@@ -1,0 +1,23 @@
+@use "../../../assets/utilities/mixins";
+
+:host {
+  @include mixins.flex-center(column);
+  justify-content: flex-start;
+  padding: 20px;
+  width: 100%;
+
+  h2 {
+    color: #fff;
+    font-size: 30px;
+    margin-bottom: auto;
+  }
+
+  .center-message {
+    color: #fff;
+    font-size: 25px;
+    font-weight: bold;
+    margin-inline: auto;
+    margin-bottom: auto;
+    text-align: center;
+  }
+}

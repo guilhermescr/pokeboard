@@ -125,6 +125,8 @@
     .header-for-search-modes {
       form {
         @include mixins.flex-center(column-reverse);
+        margin-inline: auto;
+        max-width: 280px;
       }
     }
   }
