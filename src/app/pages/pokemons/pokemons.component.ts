@@ -16,7 +16,27 @@ export class PokemonsComponent {
   hasSearched: boolean = false;
   pokemonList: Pokemon[] = [];
 
+  pagedPokemonList: Pokemon[] = [];
+  pages: number = 0;
+  currentPage: number = 1;
+  pageLimit: number = 20;
+
   constructor(private pokeApiService: PokeapiService) {}
+
+  getAmountOfPages(): void {
+    this.pages = Math.ceil(this.pokemonQuantity / this.pageLimit);
+  }
+
+  onPageChange(pageNumber: number) {
+    this.currentPage = pageNumber;
+    this.updatePagedCards();
+  }
+
+  updatePagedCards() {
+    const startIndex = (this.currentPage - 1) * this.pageLimit;
+    const endIndex = startIndex + this.pageLimit;
+    this.pagedPokemonList = this.pokemonList.slice(startIndex, endIndex);
+  }
 
   clearPokemonList(): void {
     this.pokemonList = [];
@@ -138,5 +158,7 @@ export class PokemonsComponent {
 
       pokemonId++;
     }
+
+    this.getAmountOfPages();
   }
 }

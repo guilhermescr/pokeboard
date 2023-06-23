@@ -10,6 +10,7 @@ import { FavoritesComponent } from './pages/favorites/favorites.component';
 import { MyProfileComponent } from './pages/my-profile/my-profile.component';
 import { HomeComponent } from './pages/home/home.component';
 import { FormModule } from './shared/components/form/form.module';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { FormModule } from './shared/components/form/form.module';
     CoreModule,
     SharedModule,
     FormModule,
+    NgxPaginationModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

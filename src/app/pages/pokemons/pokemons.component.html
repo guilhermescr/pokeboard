@@ -91,9 +91,23 @@
       You didn't give me a valid quantity. Please, enter another value.
     </p>
 
+    <pagination-controls
+      class="paginationControls"
+      (pageChange)="onPageChange($event)"
+      *ngIf="pokemonList.length"
+    ></pagination-controls>
+
     <app-pokemon-cards *ngIf="pokemonList.length">
       <app-pokemon-card
-        *ngFor="let pokemon of pokemonList"
+        *ngFor="
+          let pokemon of pokemonList
+            | paginate
+              : {
+                  itemsPerPage: pageLimit,
+                  currentPage: currentPage,
+                  totalItems: pokemonQuantity
+                }
+        "
         [pokemon]="pokemon"
       ></app-pokemon-card>
     </app-pokemon-cards>
