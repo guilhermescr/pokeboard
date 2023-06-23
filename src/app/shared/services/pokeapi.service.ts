@@ -9,6 +9,7 @@ import { Pokemon } from '../models/pokemon.model';
 })
 export class PokeapiService {
   private pokeApiUrl = 'https://pokeapi.co/api/v2/pokemon';
+  maxAmountOfRequests: number = 1010;
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 

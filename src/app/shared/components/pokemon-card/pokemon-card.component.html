@@ -1,4 +1,4 @@
-<mat-card class="pokemon-card">
+<mat-card class="pokemon-card" tabindex="0">
   <mat-card-header [ngStyle]="{ padding: 0 }">
     <mat-card-title-group>
       <mat-card-title>{{ pokemon.name | titlecase }}</mat-card-title>
@@ -30,7 +30,9 @@
       class="star-icon"
       aria-hidden="false"
       aria-label="Star Icon"
-      fontIcon="{{!isHover ? 'star_border' : 'star'}}"
+      role="button"
+      tabindex="0"
+      fontIcon="{{ !isHover ? 'star_border' : 'star' }}"
       (click)="
         !isFavorite ? markPokemonAsFavorite() : unmarkPokemonAsFavorite()
       "

@@ -4,3 +4,9 @@
   flex-direction: $direction;
   justify-content: center;
 }
+
+@mixin focusForTabIndex($borderColor: #8d0308) {
+  border: 2px solid $borderColor;
+  box-shadow: 0 0 7px brown;
+  outline: none;
+}

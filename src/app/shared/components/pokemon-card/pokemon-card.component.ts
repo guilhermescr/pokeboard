@@ -43,8 +43,7 @@ export class PokemonCardComponent {
   }
 
   unmarkPokemonAsFavorite(): void {
-    this.starIcon.fontIcon = 'star_border';
-    this.isFavorite = false;
+    [this.isHover, this.isFavorite] = [false, false];
 
     this.pokeApiService.removePokemonFromFavoriteList(this.pokemon);
   }

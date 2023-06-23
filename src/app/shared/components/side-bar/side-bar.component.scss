@@ -122,6 +122,10 @@
       opacity: 0.92;
     }
 
+    &:focus {
+      @include mixins.focusForTabIndex(red);
+    }
+
     .open-side-bar-burger-button__bar {
       background-color: #fff;
       height: 3px;

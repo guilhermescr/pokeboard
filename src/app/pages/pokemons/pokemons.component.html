@@ -7,6 +7,7 @@
         id="searchPokemonInput"
         class="mode-bar__input"
         placeholder="PokéName OR ID"
+        autocomplete="off"
         [(ngModel)]="pokemonIdentifier"
         (ngModelChange)="handleChange()"
         *ngIf="
@@ -21,11 +22,19 @@
           id="maxAmountOfPokeRequests"
           class="mode-bar__input"
           placeholder="Amount of Pokémon"
+          autocomplete="off"
+          [(ngModel)]="pokemonQuantity"
           (ngModelChange)="handleChange()"
         />
       </ng-template>
 
-      <button (click)="getPokemonByIdentifier()">
+      <button
+        (click)="
+          pokeSearchCurrentMode === 'Search By Name Mode'
+            ? getPokemonByIdentifier()
+            : handlePokemonQuantity()
+        "
+      >
         Search
         <mat-icon
           class="search-icon"
@@ -43,6 +52,7 @@
         name="pokeSearchModes"
         id="pokeSearchModes"
         [(ngModel)]="pokeSearchCurrentMode"
+        (ngModelChange)="clearPokemonList()"
       >
         <option>Search By Name Mode</option>
         <option>Quantity Mode</option>
@@ -52,8 +62,8 @@
 </header>
 
 <section
-  class="searchByNameMode mode-container"
-  *ngIf="pokeSearchCurrentMode === 'Search By Name Mode'"
+  class="mode-container"
+  *ngIf="pokeSearchCurrentMode === 'Search By Name Mode'; else showQuantityMode"
 >
   <p class="center-message" *ngIf="!hasSearched">
     A Pokémon card will show up here if you search for a NAME or ID.
@@ -70,3 +80,22 @@
     ></app-pokemon-card>
   </app-pokemon-cards>
 </section>
+
+<ng-template #showQuantityMode>
+  <section class="mode-container">
+    <p class="center-message" *ngIf="!hasSearched && !isInvalidQuantity">
+      Pokémon cards will show up here if you choose an amount of Pokémon.
+    </p>
+
+    <p class="center-message" *ngIf="isInvalidQuantity">
+      You didn't give me a valid quantity. Please, enter another value.
+    </p>
+
+    <app-pokemon-cards *ngIf="pokemonList.length">
+      <app-pokemon-card
+        *ngFor="let pokemon of pokemonList"
+        [pokemon]="pokemon"
+      ></app-pokemon-card>
+    </app-pokemon-cards>
+  </section>
+</ng-template>

@@ -32,8 +32,7 @@
           width: 100%;
 
           &:focus {
-            box-shadow: 0 0 7px brown;
-            outline: none;
+            @include mixins.focusForTabIndex;
           }
         }
 
@@ -44,7 +43,7 @@
           cursor: pointer;
           @include mixins.flex-center;
           gap: 6px;
-          height: 99.8%;
+          height: 90%;
           font-size: 16px;
           font-weight: bold;
           padding-inline: 10px;
@@ -59,6 +58,10 @@
 
           &:active {
             background-color: #fefefedd;
+          }
+
+          &:focus {
+            @include mixins.focusForTabIndex;
           }
         }
       }
@@ -88,6 +91,10 @@
           font-weight: bold;
           padding: 10px;
           text-align: center;
+
+          &:focus {
+            @include mixins.focusForTabIndex;
+          }
         }
       }
     }
