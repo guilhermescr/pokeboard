@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from 'src/app/shared/models/user.model';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-signin',
@@ -44,9 +46,10 @@ export class SigninComponent {
       this.signInForm.value.email &&
       this.signInForm.value.password
     ) {
-      const user = {
+      const user: User = {
         email: this.signInForm.value.email,
         password: this.signInForm.value.password,
+        favoritePokemonList: [],
       };
 
       if (!this.authService.isNewAccount(user)) {

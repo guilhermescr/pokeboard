@@ -9,25 +9,45 @@ import { Router } from '@angular/router';
 export class AuthService {
   private currentUserSubject: BehaviorSubject<User | null> =
     new BehaviorSubject<User | null>({
+      id: '1',
       name: 'guilhermescr',
       email: 'devguiga@gmail.com',
       password: 'omelhorem2023',
+      favoritePokemonList: [],
     });
   public currentUser: Observable<User | null> =
     this.currentUserSubject.asObservable();
 
   users: User[] = [
     {
+      id: '1',
       name: 'guilhermescr',
       email: 'devguiga@gmail.com',
       password: 'omelhorem2023',
+      favoritePokemonList: [],
     },
   ];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+    this.currentUser.subscribe((currentUserData) => {
+      if (currentUserData) {
+        this.updateUsers(currentUserData);
+      }
+    });
+  }
 
   registerNewUser(user: User): void {
     this.users.push(user);
+  }
+
+  updateUsers(updatedUser: User): void {
+    this.users = this.users.map((user) =>
+      user.id === updatedUser.id ? updatedUser : user
+    );
+  }
+
+  updateCurrentUser(updatedCurrentUser: User): void {
+    this.currentUserSubject.next(updatedCurrentUser);
   }
 
   logIn({ email }: User): void {

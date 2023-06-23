@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from 'src/app/shared/models/user.model';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-signup',
@@ -46,10 +48,12 @@ export class SignupComponent {
       this.signUpForm.value.email &&
       this.signUpForm.value.password
     ) {
-      const newUser = {
+      const newUser: User = {
+        id: uuidv4(),
         name: this.signUpForm.value.name,
         email: this.signUpForm.value.email,
         password: this.signUpForm.value.password,
+        favoritePokemonList: [],
       };
 
       if (this.authService.isNewAccount(newUser)) {

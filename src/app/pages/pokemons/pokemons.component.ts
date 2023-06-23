@@ -9,12 +9,16 @@ import { PokeapiService } from 'src/app/shared/services/pokeapi.service';
 })
 export class PokemonsComponent {
   pokeSearchCurrentMode: string = 'Search By Name Mode';
-  pokemonIdentifier: string = '';
+  pokemonIdentifier: string = 'pichu';
   pokemonNotFound: boolean = false;
   hasSearched: boolean = false;
   pokemonList: Pokemon[] = [];
 
   constructor(private pokeApiService: PokeapiService) {}
+
+  ngOnInit(): void {
+    this.getPokemonByIdentifier();
+  }
 
   handleChange(): void {
     this.pokemonList = [];
