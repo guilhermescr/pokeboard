@@ -8,3 +8,19 @@
     width: max-content;
   }
 }
+
+@media (max-width: 450px) {
+  :host {
+    .paginationControls {
+      font-size: 12px;
+    }
+  }
+}
+
+@media (max-width: 300px) {
+  :host {
+    .paginationControls {
+      font-size: 8px;
+    }
+  }
+}

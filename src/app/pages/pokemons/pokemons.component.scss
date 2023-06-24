@@ -6,8 +6,6 @@
   width: 100%;
 
   .header-for-search-modes {
-    margin-bottom: auto;
-    max-width: 750px;
     width: 100%;
 
     form {
@@ -101,8 +99,7 @@
   }
 
   .mode-container {
-    margin-bottom: auto;
-    padding: 20px 15px;
+    padding-top: 20px;
     width: 100%;
 
     .center-message {
@@ -119,6 +116,10 @@
 @media (max-width: 900px) {
   :host {
     padding-top: 75px;
+
+    .wrapper {
+      padding: 0;
+    }
 
     .header-for-search-modes {
       form {

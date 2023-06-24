@@ -8,9 +8,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { PokemonCardComponent } from './components/pokemon-card/pokemon-card.component';
 import { MatCardModule } from '@angular/material/card';
 import { PokemonCardsComponent } from './components/pokemon-cards/pokemon-cards.component';
+import { WrapperComponent } from './components/wrapper/wrapper.component';
 
 @NgModule({
-  declarations: [SideBarComponent, PokemonCardComponent, PokemonCardsComponent],
+  declarations: [
+    SideBarComponent,
+    PokemonCardComponent,
+    PokemonCardsComponent,
+    WrapperComponent,
+  ],
   imports: [
     CommonModule,
     RouterModule,
@@ -28,6 +34,7 @@ import { PokemonCardsComponent } from './components/pokemon-cards/pokemon-cards.
     PokemonCardsComponent,
     PokemonCardComponent,
     MatIconModule,
+    WrapperComponent,
   ],
 })
 export class SharedModule {}

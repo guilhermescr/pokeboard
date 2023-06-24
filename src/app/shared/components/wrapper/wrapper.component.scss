@@ -1,0 +1,17 @@
+@use "../../../../assets/utilities/mixins";
+
+:host {
+  @include mixins.flex-center;
+
+  margin-bottom: auto;
+  margin-inline: auto;
+  max-width: 1200px;
+  padding-inline: 70px;
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  :host {
+    padding: 0;
+  }
+}

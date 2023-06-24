@@ -1,116 +1,126 @@
-<header class="header-for-search-modes">
-  <form>
-    <div class="mode-bar">
-      <input
-        type="search"
-        name="searchPokemonInput"
-        id="searchPokemonInput"
-        class="mode-bar__input"
-        placeholder="PokéName OR ID"
-        autocomplete="off"
-        [(ngModel)]="pokemonIdentifier"
-        (ngModelChange)="handleChange()"
-        *ngIf="
-          pokeSearchCurrentMode === 'Search By Name Mode';
-          else showQuantityInput
-        "
-      />
-      <ng-template #showQuantityInput>
+<app-wrapper>
+  <header class="header-for-search-modes">
+    <form>
+      <div class="mode-bar">
         <input
-          type="number"
-          name="maxAmountOfPokeRequests"
-          id="maxAmountOfPokeRequests"
+          type="search"
+          name="searchPokemonInput"
+          id="searchPokemonInput"
           class="mode-bar__input"
-          placeholder="Amount of Pokémon"
+          placeholder="PokéName OR ID"
           autocomplete="off"
-          [(ngModel)]="pokemonQuantity"
+          [(ngModel)]="pokemonIdentifier"
           (ngModelChange)="handleChange()"
+          *ngIf="
+            pokeSearchCurrentMode === 'Search By Name Mode';
+            else showQuantityInput
+          "
         />
-      </ng-template>
+        <ng-template #showQuantityInput>
+          <input
+            type="number"
+            name="maxAmountOfPokeRequests"
+            id="maxAmountOfPokeRequests"
+            class="mode-bar__input"
+            placeholder="Amount of Pokémon"
+            autocomplete="off"
+            [(ngModel)]="pokemonQuantity"
+            (ngModelChange)="handleChange()"
+          />
+        </ng-template>
 
-      <button
-        (click)="
-          pokeSearchCurrentMode === 'Search By Name Mode'
-            ? getPokemonByIdentifier()
-            : handlePokemonQuantity()
-        "
-      >
-        Search
-        <mat-icon
-          class="search-icon"
-          aria-hidden="false"
-          aria-label="Search Icon"
-          fontIcon="search"
-        ></mat-icon>
-      </button>
-    </div>
+        <button
+          (click)="
+            pokeSearchCurrentMode === 'Search By Name Mode'
+              ? getPokemonByIdentifier()
+              : handlePokemonQuantity()
+          "
+        >
+          Search
+          <mat-icon
+            class="search-icon"
+            aria-hidden="false"
+            aria-label="Search Icon"
+            fontIcon="search"
+          ></mat-icon>
+        </button>
+      </div>
 
-    <div class="modes">
-      <label for="pokeSearchModes">Modes:</label>
+      <div class="modes">
+        <label for="pokeSearchModes">Modes:</label>
 
-      <select
-        name="pokeSearchModes"
-        id="pokeSearchModes"
-        [(ngModel)]="pokeSearchCurrentMode"
-        (ngModelChange)="handleSelectChange()"
-      >
-        <option>Search By Name Mode</option>
-        <option>Quantity Mode</option>
-      </select>
-    </div>
-  </form>
-</header>
+        <select
+          name="pokeSearchModes"
+          id="pokeSearchModes"
+          [(ngModel)]="pokeSearchCurrentMode"
+          (ngModelChange)="handleSelectChange()"
+        >
+          <option>Search By Name Mode</option>
+          <option>Quantity Mode</option>
+        </select>
+      </div>
+    </form>
+  </header>
+</app-wrapper>
 
-<section
-  class="mode-container"
-  *ngIf="pokeSearchCurrentMode === 'Search By Name Mode'; else showQuantityMode"
->
-  <p class="center-message" *ngIf="!hasSearched">
-    A Pokémon card will show up here if you search for a NAME or ID.
-  </p>
-
-  <p class="center-message" *ngIf="pokemonIdentifier.length && pokemonNotFound">
-    This Pokémon was not found. Check if you have written it correctly!
-  </p>
-
-  <app-pokemon-cards *ngIf="pokemonList.length">
-    <app-pokemon-card
-      *ngFor="let pokemon of pokemonList"
-      [pokemon]="pokemon"
-    ></app-pokemon-card>
-  </app-pokemon-cards>
-</section>
-
-<ng-template #showQuantityMode>
-  <section class="mode-container">
-    <p class="center-message" *ngIf="!hasSearched && !isInvalidQuantity">
-      Pokémon cards will show up here if you choose an amount of Pokémon.
+<app-wrapper>
+  <section
+    class="mode-container"
+    *ngIf="
+      pokeSearchCurrentMode === 'Search By Name Mode';
+      else showQuantityMode
+    "
+  >
+    <p class="center-message" *ngIf="!hasSearched">
+      A Pokémon card will show up here if you search for a NAME or ID.
     </p>
 
-    <p class="center-message" *ngIf="isInvalidQuantity">
-      You didn't give me a valid quantity. Please, enter another value.
-    </p>
-
-    <app-pagination-controls
-      (pageChangeEvent)="onPageChange($event)"
-      *ngIf="pokemonList.length && pokemonList.length === pokemonQuantity"
-    ></app-pagination-controls>
-
-    <app-pokemon-cards
-      *ngIf="pokemonList.length && pokemonList.length === pokemonQuantity"
+    <p
+      class="center-message"
+      *ngIf="pokemonIdentifier.length && pokemonNotFound"
     >
+      This Pokémon was not found. Check if you have written it correctly!
+    </p>
+
+    <app-pokemon-cards *ngIf="pokemonList.length">
       <app-pokemon-card
-        *ngFor="
-          let pokemon of pokemonList
-            | paginate
-              : {
-                  itemsPerPage: pageLimit,
-                  currentPage: currentPage,
-                  totalItems: pokemonQuantity
-                }
-        "
+        *ngFor="let pokemon of pokemonList"
         [pokemon]="pokemon"
       ></app-pokemon-card>
     </app-pokemon-cards>
   </section>
-</ng-template>
+
+  <ng-template #showQuantityMode>
+    <section class="mode-container">
+      <p class="center-message" *ngIf="!hasSearched && !isInvalidQuantity">
+        Pokémon cards will show up here if you choose an amount of Pokémon.
+      </p>
+
+      <p class="center-message" *ngIf="isInvalidQuantity">
+        You didn't give me a valid quantity. Please, enter another value.
+      </p>
+
+      <app-pagination-controls
+        (pageChangeEvent)="onPageChange($event)"
+        *ngIf="pokemonList.length && pokemonList.length === pokemonQuantity"
+      ></app-pagination-controls>
+
+      <app-pokemon-cards
+        *ngIf="pokemonList.length && pokemonList.length === pokemonQuantity"
+      >
+        <app-pokemon-card
+          *ngFor="
+            let pokemon of pokemonList
+              | paginate
+                : {
+                    itemsPerPage: pageLimit,
+                    currentPage: currentPage,
+                    totalItems: pokemonQuantity
+                  }
+          "
+          [pokemon]="pokemon"
+        ></app-pokemon-card>
+      </app-pokemon-cards>
+    </section>
+  </ng-template>
+</app-wrapper>
