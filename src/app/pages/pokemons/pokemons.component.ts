@@ -9,7 +9,8 @@ import { PokeapiService } from 'src/app/shared/services/pokeapi.service';
 })
 export class PokemonsComponent {
   pokeSearchCurrentMode: string = 'Search By Name Mode';
-  pokemonIdentifier: string = '';
+  // clear this variable below
+  pokemonIdentifier: string = 'bulbasaur';
   pokemonQuantity: number = 1;
   pokemonNotFound: boolean = false;
   isInvalidQuantity: boolean = false;
@@ -22,6 +23,11 @@ export class PokemonsComponent {
   pageLimit: number = 20;
 
   constructor(private pokeApiService: PokeapiService) {}
+
+  // remove this ngOnInit()
+  ngOnInit(): void {
+    this.getPokemonByIdentifier();
+  }
 
   getAmountOfPages(): void {
     this.pages = Math.ceil(this.pokemonQuantity / this.pageLimit);

@@ -1,0 +1,81 @@
+<section class="card-modal">
+  <header>
+    <mat-icon
+      aria-hidden="false"
+      aria-label="Arrow Back Icon"
+      fontIcon="arrow_back"
+      role="button"
+      class="arrow-back-icon"
+      (click)="fireCloseModalEvent()"
+    ></mat-icon>
+
+    <h2>Bulbasaur</h2>
+
+    <span id="pokemon-id">#001</span>
+  </header>
+
+  <article class="pokemon-content">
+    <img
+      class="pokemon-image"
+      src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"
+      alt="Image of the Pokémon Bulbasaur"
+    />
+
+    <div class="pokemon-types">
+      <span class="pokemon-types__type grass--background"> Grass </span>
+
+      <span class="pokemon-types__type poison--background"> Poison </span>
+    </div>
+
+    <section class="pokemon-content__about">
+      <h3>About</h3>
+
+      <div class="about__info">
+        <div>
+          <p>Icon 6,9 kg</p>
+          <span>Weight</span>
+        </div>
+
+        <div>
+          <p>Icon 0,7 m</p>
+          <span>Height</span>
+        </div>
+
+        <div>
+          <p>
+            <span>Chlorophyil</span>
+            <span>Overgrow</span>
+          </p>
+          <span>Moves</span>
+        </div>
+      </div>
+
+      <p class="about__pokemon-description"></p>
+    </section>
+
+    <section class="pokemon-content__base-stats">
+      <h3>Base Stats</h3>
+
+      <div class="base-stats__stats">
+        <ul class="stats__types">
+          <li>HP</li>
+          <li>ATK</li>
+          <li>DEF</li>
+          <li>SATK</li>
+          <li>SDEF</li>
+          <li>SPD</li>
+        </ul>
+
+        <ul class="stats-list">
+          <li class="stat">
+            <span>045</span>
+
+            <div class="stat__progress-bar">
+              <div class="progress-bar__current-progress"></div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </article>
+</section>

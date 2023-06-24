@@ -1,4 +1,4 @@
-<mat-card class="pokemon-card" tabindex="0">
+<mat-card class="pokemon-card" tabindex="0" (click)="openCardModal()">
   <mat-card-header [ngStyle]="{ padding: 0 }">
     <mat-card-title-group>
       <mat-card-title>{{ pokemon.name | titlecase }}</mat-card-title>
@@ -57,3 +57,5 @@
     />
   </mat-card-footer>
 </mat-card>
+
+<app-card-modal *ngIf="isCardModalOpen" (closeModalEvent)="closeModal()"></app-card-modal>

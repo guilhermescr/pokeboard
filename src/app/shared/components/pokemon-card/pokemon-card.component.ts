@@ -13,6 +13,8 @@ export class PokemonCardComponent {
   @Input() pokemon!: Pokemon;
   isHover: boolean = false;
   isFavorite: boolean = false;
+  // change it to false
+  isCardModalOpen: boolean = true;
 
   constructor(
     private pokeApiService: PokeapiService,
@@ -24,6 +26,14 @@ export class PokemonCardComponent {
       this.markPokemonAsFavorite();
       this.cdr.detectChanges();
     }
+  }
+
+  openCardModal(): void {
+    this.isCardModalOpen = true;
+  }
+
+  closeModal(): void {
+    this.isCardModalOpen = false;
   }
 
   onMouseEnterStar(): void {

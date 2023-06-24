@@ -1,0 +1,71 @@
+@use "../../../../assets/utilities/mixins";
+
+@keyframes openModalAnimation {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+:host {
+  background-color: #00000088;
+  display: flex;
+  @include mixins.flex-center;
+  height: 100%;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+
+  .card-modal {
+    animation: openModalAnimation 0.1s linear;
+    background: #78c850
+      url("../../../../assets/icons/pokeball-opacity-20percent.png") top right
+      no-repeat fixed;
+    background-size: 50%;
+    border: 5px solid #fff;
+    border-radius: 4px;
+    max-width: 350px;
+    width: 100%;
+
+    header {
+      color: #fff;
+      display: flex;
+      padding: 15px;
+
+      .arrow-back-icon {
+        cursor: pointer;
+        font-size: 30px;
+      }
+
+      h2 {
+        font-size: 26px;
+        margin-left: 10px;
+      }
+
+      #pokemon-id {
+        align-self: center;
+        font-weight: bold;
+        margin-left: auto;
+        padding-top: 2px;
+      }
+    }
+
+    .pokemon-content {
+      background-color: #fff;
+      @include mixins.flex-center(column);
+
+      .pokemon-image {
+        max-width: 200px;
+        width: 100%;
+      }
+
+      h3 {
+        text-align: center;
+      }
+    }
+  }
+}
