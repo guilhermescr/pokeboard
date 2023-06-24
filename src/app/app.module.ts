@@ -11,6 +11,7 @@ import { MyProfileComponent } from './pages/my-profile/my-profile.component';
 import { HomeComponent } from './pages/home/home.component';
 import { FormModule } from './shared/components/form/form.module';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { PaginationControlsComponent } from './pages/pokemons/pagination-controls/pagination-controls.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     FavoritesComponent,
     MyProfileComponent,
     HomeComponent,
+    PaginationControlsComponent,
   ],
   imports: [
     BrowserModule,

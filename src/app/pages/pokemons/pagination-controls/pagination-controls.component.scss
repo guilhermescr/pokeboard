@@ -1,0 +1,10 @@
+@use "../../../../assets/utilities/mixins";
+
+:host {
+  .paginationControls {
+    border-radius: 8px;
+    @include mixins.flex-center;
+    margin-inline: auto;
+    width: max-content;
+  }
+}

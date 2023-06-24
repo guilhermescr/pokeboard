@@ -40,12 +40,22 @@ export class PokemonsComponent {
 
   clearPokemonList(): void {
     this.pokemonList = [];
+    this.pagedPokemonList = [];
+  }
+
+  handleSelectChange(): void {
+    this.clearPokemonList();
+
+    this.pokemonIdentifier = '';
+    this.pokemonQuantity = 1;
+    [this.pokemonNotFound, this.isInvalidQuantity, this.hasSearched] = [
+      false,
+      false,
+      false,
+    ];
   }
 
   handleChange(): void {
-    if (this.pokeSearchCurrentMode === 'Quantity Mode') {
-    }
-
     [this.hasSearched, this.pokemonNotFound, this.isInvalidQuantity] = [
       false,
       false,
@@ -60,7 +70,8 @@ export class PokemonsComponent {
       .map((character) => {
         return /^[A-Za-z0-9]*$/.test(character) ? character : '';
       })
-      .join('');
+      .join('')
+      .toLowerCase();
 
     const isPokemonInPokemonList =
       this.pokemonList.find(

@@ -113,13 +113,6 @@
       max-width: 450px;
       text-align: center;
     }
-
-    .paginationControls {
-      border-radius: 8px;
-      @include mixins.flex-center;
-      margin-inline: auto;
-      width: max-content;
-    }
   }
 }
 
