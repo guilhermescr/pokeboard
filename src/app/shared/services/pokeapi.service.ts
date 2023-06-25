@@ -9,12 +9,17 @@ import { Pokemon } from '../models/pokemon.model';
 })
 export class PokeapiService {
   private pokeApiUrl = 'https://pokeapi.co/api/v2/pokemon';
-  maxAmountOfRequests: number = 1010;
+  private pokemonSpeciesUrl = 'https://pokeapi.co/api/v2/pokemon-species';
+  maxAmountOfRequests: number = 1008;
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
   getPokemon(pokemonIdentifier: string): Observable<any> {
     return this.http.get(`${this.pokeApiUrl}/${pokemonIdentifier}`);
+  }
+
+  getPokemonDescription(pokemonIdentifier: string): Observable<any> {
+    return this.http.get(`${this.pokemonSpeciesUrl}/${pokemonIdentifier}`);
   }
 
   isPokemonInFavoriteList(pokemon: Pokemon): boolean {

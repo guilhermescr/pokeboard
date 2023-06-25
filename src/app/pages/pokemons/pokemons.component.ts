@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { forkJoin } from 'rxjs';
 import { Pokemon } from 'src/app/shared/models/pokemon.model';
 import { PokeapiService } from 'src/app/shared/services/pokeapi.service';
 
@@ -9,8 +10,7 @@ import { PokeapiService } from 'src/app/shared/services/pokeapi.service';
 })
 export class PokemonsComponent {
   pokeSearchCurrentMode: string = 'Search By Name Mode';
-  // clear this variable below
-  pokemonIdentifier: string = 'bulbasaur';
+  pokemonIdentifier: string = '';
   pokemonQuantity: number = 1;
   pokemonNotFound: boolean = false;
   isInvalidQuantity: boolean = false;
@@ -23,11 +23,6 @@ export class PokemonsComponent {
   pageLimit: number = 20;
 
   constructor(private pokeApiService: PokeapiService) {}
-
-  // remove this ngOnInit()
-  ngOnInit(): void {
-    this.getPokemonByIdentifier();
-  }
 
   getAmountOfPages(): void {
     this.pages = Math.ceil(this.pokemonQuantity / this.pageLimit);
@@ -90,12 +85,34 @@ export class PokemonsComponent {
 
     this.hasSearched = true;
 
-    this.pokeApiService.getPokemon(this.pokemonIdentifier).subscribe({
-      next: (pokemonData) => {
+    const sources = [
+      this.pokeApiService.getPokemonDescription(this.pokemonIdentifier),
+      this.pokeApiService.getPokemon(this.pokemonIdentifier),
+    ];
+
+    forkJoin(sources).subscribe({
+      next: (pokemonResults) => {
+        const pokemonSpeciesData = pokemonResults[0];
+        const descriptionEntry = pokemonSpeciesData.flavor_text_entries
+          ?.find(
+            (descriptionEntries: any) =>
+              descriptionEntries.language.name === 'en'
+          )
+          .flavor_text.replaceAll('\n', ' ')
+          .replaceAll('\f', ' ')
+          .replace(/Pokémon/gi, 'Pokémon');
+
+        const description = descriptionEntry
+          ? descriptionEntry
+          : "There's no description available for this Pokémon.";
+
+        const pokemonData = pokemonResults[1];
+
         const pokemon: Pokemon = {
           id: pokemonData.id,
           name: pokemonData.name,
           imgSrc: pokemonData.sprites.front_default,
+          description,
           types: pokemonData.types.map(
             (typesObject: any) => typesObject.type.name
           ),
@@ -109,9 +126,11 @@ export class PokemonsComponent {
             specialDefense: pokemonData.stats[4].base_stat,
             speed: pokemonData.stats[5].base_stat,
           },
-          abilities: pokemonData.abilities.map(
-            (abilitiesObject: any) => abilitiesObject.ability.name
-          ),
+          abilities: pokemonData.abilities
+            .map((abilitiesObject: any) =>
+              abilitiesObject.ability.name.replaceAll('-', '')
+            )
+            .slice(0, 2),
         };
         this.pokemonList.push(pokemon);
 
@@ -124,7 +143,7 @@ export class PokemonsComponent {
     });
   }
 
-  handlePokemonQuantity() {
+  handlePokemonQuantity(): void {
     this.isInvalidQuantity = this.pokemonQuantity === null;
 
     if (this.hasSearched || this.isInvalidQuantity) return;
@@ -146,13 +165,34 @@ export class PokemonsComponent {
     let pokemonId = 1;
 
     while (pokemonId <= this.pokemonQuantity) {
-      this.pokeApiService
-        .getPokemon(String(pokemonId))
-        .subscribe((pokemonData) => {
+      const sources = [
+        this.pokeApiService.getPokemonDescription(String(pokemonId)),
+        this.pokeApiService.getPokemon(String(pokemonId)),
+      ];
+
+      forkJoin(sources).subscribe({
+        next: (pokemonResults) => {
+          const pokemonSpeciesData = pokemonResults[0];
+          const descriptionEntry = pokemonSpeciesData.flavor_text_entries
+            ?.find(
+              (descriptionEntries: any) =>
+                descriptionEntries.language.name === 'en'
+            )
+            .flavor_text.replaceAll('\n', ' ')
+            .replaceAll('\f', ' ')
+            .replace(/Pokémon/gi, 'Pokémon');
+
+          const description = descriptionEntry
+            ? descriptionEntry
+            : "There's no description available for this Pokémon.";
+
+          const pokemonData = pokemonResults[1];
+
           const pokemon: Pokemon = {
             id: pokemonData.id,
             name: pokemonData.name,
             imgSrc: pokemonData.sprites.front_default,
+            description,
             types: pokemonData.types.map(
               (typesObject: any) => typesObject.type.name
             ),
@@ -166,12 +206,21 @@ export class PokemonsComponent {
               specialDefense: pokemonData.stats[4].base_stat,
               speed: pokemonData.stats[5].base_stat,
             },
-            abilities: pokemonData.abilities.map(
-              (abilitiesObject: any) => abilitiesObject.ability.name
-            ),
+            abilities: pokemonData.abilities
+              .map((abilitiesObject: any) =>
+                abilitiesObject.ability.name.replaceAll('-', '')
+              )
+              .slice(0, 2),
           };
           this.pokemonList.push(pokemon);
-        });
+
+          this.pokemonNotFound = false;
+        },
+        error: (error) => {
+          console.error(error);
+          this.pokemonNotFound = true;
+        },
+      });
 
       pokemonId++;
     }

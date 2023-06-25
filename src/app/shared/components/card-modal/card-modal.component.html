@@ -1,4 +1,4 @@
-<section class="card-modal">
+<section class="card-modal {{ pokemonData.types[0] }}--background">
   <header>
     <mat-icon
       aria-hidden="false"
@@ -9,69 +9,225 @@
       (click)="fireCloseModalEvent()"
     ></mat-icon>
 
-    <h2>Bulbasaur</h2>
+    <h2>{{ pokemonData.name | titlecase }}</h2>
 
-    <span id="pokemon-id">#001</span>
+    <span id="pokemon-id">{{ formatPokemonId(pokemonData.id) }}</span>
   </header>
 
+  <img
+    class="pokemon-image"
+    src="{{ pokemonData.imgSrc }}"
+    alt="Image of the Pokémon Bulbasaur"
+  />
+
   <article class="pokemon-content">
-    <img
-      class="pokemon-image"
-      src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"
-      alt="Image of the Pokémon Bulbasaur"
-    />
-
     <div class="pokemon-types">
-      <span class="pokemon-types__type grass--background"> Grass </span>
-
-      <span class="pokemon-types__type poison--background"> Poison </span>
+      <span
+        *ngFor="let type of pokemonData.types"
+        class="pokemon-types__type {{ type }}--background"
+      >
+        {{ type | titlecase }}
+      </span>
     </div>
 
     <section class="pokemon-content__about">
-      <h3>About</h3>
+      <h3 class="{{ pokemonData.types[0] }}">About</h3>
 
       <div class="about__info">
-        <div>
-          <p>Icon 6,9 kg</p>
-          <span>Weight</span>
-        </div>
-
-        <div>
-          <p>Icon 0,7 m</p>
-          <span>Height</span>
-        </div>
-
-        <div>
+        <div class="genetic-data">
           <p>
-            <span>Chlorophyil</span>
-            <span>Overgrow</span>
+            <svg
+              class="shopping-bag-icon"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              viewBox="0 0 483.1 483.1"
+              xml:space="preserve"
+            >
+              <g>
+                <path
+                  d="M434.55,418.7l-27.8-313.3c-0.5-6.2-5.7-10.9-12-10.9h-58.6c-0.1-52.1-42.5-94.5-94.6-94.5s-94.5,42.4-94.6,94.5h-58.6
+		c-6.2,0-11.4,4.7-12,10.9l-27.8,313.3c0,0.4,0,0.7,0,1.1c0,34.9,32.1,63.3,71.5,63.3h243c39.4,0,71.5-28.4,71.5-63.3
+		C434.55,419.4,434.55,419.1,434.55,418.7z M241.55,24c38.9,0,70.5,31.6,70.6,70.5h-141.2C171.05,55.6,202.65,24,241.55,24z
+		 M363.05,459h-243c-26,0-47.2-17.3-47.5-38.8l26.8-301.7h47.6v42.1c0,6.6,5.4,12,12,12s12-5.4,12-12v-42.1h141.2v42.1
+		c0,6.6,5.4,12,12,12s12-5.4,12-12v-42.1h47.6l26.8,301.8C410.25,441.7,389.05,459,363.05,459z"
+                />
+              </g>
+            </svg>
+
+            <span>{{ pokemonData.weight }} kg</span>
           </p>
-          <span>Moves</span>
+
+          <span class="data-title">Weight</span>
+        </div>
+
+        <div class="genetic-data">
+          <p>
+            <img
+              class="vertical-ruler-icon"
+              src="../../../../assets/icons/vertical-ruler.png"
+              alt="Vertical Ruler"
+            />
+
+            <span>{{ pokemonData.height }} m</span>
+          </p>
+
+          <span class="data-title">Height</span>
+        </div>
+
+        <div class="abilities-data">
+          <p>
+            <span *ngFor="let ability of pokemonData.abilities">{{
+              ability | titlecase
+            }}</span>
+          </p>
+
+          <span class="data-title">Moves</span>
         </div>
       </div>
 
-      <p class="about__pokemon-description"></p>
+      <p class="about__pokemon-description">
+        {{ pokemonData.description }}
+      </p>
     </section>
 
     <section class="pokemon-content__base-stats">
-      <h3>Base Stats</h3>
+      <h3 class="{{ pokemonData.types[0] }}">Base Stats</h3>
 
       <div class="base-stats__stats">
         <ul class="stats__types">
-          <li>HP</li>
-          <li>ATK</li>
-          <li>DEF</li>
-          <li>SATK</li>
-          <li>SDEF</li>
-          <li>SPD</li>
+          <li class="{{ pokemonData.types[0] }}">HP</li>
+          <li class="{{ pokemonData.types[0] }}">ATK</li>
+          <li class="{{ pokemonData.types[0] }}">DEF</li>
+          <li class="{{ pokemonData.types[0] }}">SATK</li>
+          <li class="{{ pokemonData.types[0] }}">SDEF</li>
+          <li class="{{ pokemonData.types[0] }}">SPD</li>
         </ul>
 
-        <ul class="stats-list">
+        <ul class="stats__data">
           <li class="stat">
-            <span>045</span>
+            <span>{{ pokemonData.baseStats.hp }}</span>
 
             <div class="stat__progress-bar">
-              <div class="progress-bar__current-progress"></div>
+              <div
+                class="progress-bar__total-progress {{
+                  pokemonData.types[0]
+                }}--background"
+              ></div>
+
+              <div
+                class="progress-bar__current-progress {{
+                  pokemonData.types[0]
+                }}--background"
+                [ngStyle]="{
+                  width: (pokemonData.baseStats.hp * 10) / 20 + '%'
+                }"
+              ></div>
+            </div>
+          </li>
+
+          <li class="stat">
+            <span>{{ pokemonData.baseStats.attack }}</span>
+
+            <div class="stat__progress-bar">
+              <div
+                class="progress-bar__total-progress {{
+                  pokemonData.types[0]
+                }}--background"
+              ></div>
+
+              <div
+                class="progress-bar__current-progress {{
+                  pokemonData.types[0]
+                }}--background"
+                [ngStyle]="{
+                  width: (pokemonData.baseStats.attack * 10) / 20 + '%'
+                }"
+              ></div>
+            </div>
+          </li>
+
+          <li class="stat">
+            <span>{{ pokemonData.baseStats.defense }}</span>
+
+            <div class="stat__progress-bar">
+              <div
+                class="progress-bar__total-progress {{
+                  pokemonData.types[0]
+                }}--background"
+              ></div>
+
+              <div
+                class="progress-bar__current-progress {{
+                  pokemonData.types[0]
+                }}--background"
+                [ngStyle]="{
+                  width: (pokemonData.baseStats.defense * 10) / 20 + '%'
+                }"
+              ></div>
+            </div>
+          </li>
+
+          <li class="stat">
+            <span>{{ pokemonData.baseStats.specialAttack }}</span>
+
+            <div class="stat__progress-bar">
+              <div
+                class="progress-bar__total-progress {{
+                  pokemonData.types[0]
+                }}--background"
+              ></div>
+
+              <div
+                class="progress-bar__current-progress {{
+                  pokemonData.types[0]
+                }}--background"
+                [ngStyle]="{
+                  width: (pokemonData.baseStats.specialAttack * 10) / 20 + '%'
+                }"
+              ></div>
+            </div>
+          </li>
+
+          <li class="stat">
+            <span>{{ pokemonData.baseStats.specialDefense }}</span>
+
+            <div class="stat__progress-bar">
+              <div
+                class="progress-bar__total-progress {{
+                  pokemonData.types[0]
+                }}--background"
+              ></div>
+
+              <div
+                class="progress-bar__current-progress {{
+                  pokemonData.types[0]
+                }}--background"
+                [ngStyle]="{
+                  width: (pokemonData.baseStats.specialDefense * 10) / 20 + '%'
+                }"
+              ></div>
+            </div>
+          </li>
+
+          <li class="stat">
+            <span>{{ pokemonData.baseStats.speed }}</span>
+
+            <div class="stat__progress-bar">
+              <div
+                class="progress-bar__total-progress {{
+                  pokemonData.types[0]
+                }}--background"
+              ></div>
+
+              <div
+                class="progress-bar__current-progress {{
+                  pokemonData.types[0]
+                }}--background"
+                [ngStyle]="{
+                  width: (pokemonData.baseStats.speed * 10) / 20 + '%'
+                }"
+              ></div>
             </div>
           </li>
         </ul>

@@ -1,4 +1,5 @@
 @use "../../../../assets/utilities/mixins";
+@use "../pokemon-card/types";
 
 @keyframes openModalAnimation {
   0% {
@@ -13,58 +14,284 @@
   background-color: #00000088;
   display: flex;
   @include mixins.flex-center;
-  height: 100%;
+  min-height: 100vh;
   left: 50%;
-  position: absolute;
+  padding: 15px;
+  position: fixed;
   top: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
+  z-index: 1;
 
   .card-modal {
     animation: openModalAnimation 0.1s linear;
-    background: #78c850
-      url("../../../../assets/icons/pokeball-opacity-20percent.png") top right
-      no-repeat fixed;
-    background-size: 50%;
+    background-attachment: fixed;
+    background-image: url("../../../../assets/icons/pokeball-opacity-20percent.png");
+    background-position: top right;
+    background-repeat: no-repeat;
+    background-size: 35%;
     border: 5px solid #fff;
     border-radius: 4px;
-    max-width: 350px;
+    max-width: 400px;
+    padding: 5px;
+    position: relative;
+    transform: scale(0.9);
     width: 100%;
 
     header {
       color: #fff;
       display: flex;
-      padding: 15px;
+      margin-bottom: 80px;
+      padding: 10px 15px;
 
       .arrow-back-icon {
+        align-self: center;
         cursor: pointer;
         font-size: 30px;
       }
 
       h2 {
-        font-size: 26px;
-        margin-left: 10px;
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-left: 13px;
       }
 
       #pokemon-id {
         align-self: center;
-        font-weight: bold;
+        font-size: 0.9rem;
+        font-weight: 700;
         margin-left: auto;
         padding-top: 2px;
       }
     }
 
+    .pokemon-image {
+      left: 50%;
+      max-width: 140px;
+      position: absolute;
+      top: 0;
+      transform: translate(-50%, 45%);
+      width: 100%;
+    }
+
     .pokemon-content {
       background-color: #fff;
+      border-radius: 4px;
+      box-shadow: 0 0 5px #00000076 inset;
       @include mixins.flex-center(column);
+      padding: 20px;
+      padding-top: 50px;
 
-      .pokemon-image {
-        max-width: 200px;
-        width: 100%;
+      .pokemon-types {
+        align-items: center;
+        display: flex;
+        gap: 20px;
+        justify-content: space-between;
+
+        span {
+          border-radius: 15px;
+          color: #fff;
+          font-size: 0.9rem;
+          font-weight: 700;
+          padding: 5px 12px;
+          text-align: center;
+        }
       }
 
       h3 {
+        font-size: 1.1rem;
+        margin-bottom: 15px;
         text-align: center;
+      }
+
+      .pokemon-content__about {
+        padding-block: 13px;
+
+        .about__info {
+          @include mixins.flex-center;
+          gap: 25px;
+
+          > div {
+            border-right: 2px solid #ddd;
+            @include mixins.flex-center(column);
+            justify-content: space-between;
+            height: 70px;
+            padding-right: 20px;
+
+            &:last-child {
+              border-right: none;
+              padding-right: 0;
+            }
+
+            p {
+              font-size: 0.95rem;
+            }
+          }
+
+          .data-title {
+            color: #7f7d7d;
+            font-size: 0.75rem;
+            font-weight: 400;
+          }
+
+          .genetic-data {
+            p {
+              @include mixins.flex-center;
+              gap: 10px;
+              margin-block: auto;
+
+              .shopping-bag-icon {
+                fill: #7f7d7d;
+                stroke: #7f7d7d;
+                stroke-width: 15px;
+                width: 20px;
+              }
+
+              .vertical-ruler-icon {
+                width: 23px;
+              }
+            }
+          }
+
+          .abilities-data {
+            p {
+              display: flex;
+              flex-direction: column-reverse;
+            }
+          }
+        }
+
+        .about__pokemon-description {
+          font-size: 0.85rem;
+          font-weight: 400;
+          line-height: 24px;
+          margin-inline: auto;
+          padding-top: 30px;
+          text-align: justify;
+        }
+      }
+
+      .pokemon-content__base-stats {
+        width: 100%;
+
+        .base-stats__stats {
+          @include mixins.flex-center;
+          justify-content: flex-start;
+
+          ul {
+            @include mixins.flex-center(column);
+            gap: 5px;
+            list-style: none;
+
+            li {
+              font-size: 0.8rem;
+            }
+          }
+
+          .stats__types {
+            border-right: 1px solid #ccc;
+            padding-right: 15px;
+
+            li {
+              font-weight: 700;
+            }
+          }
+
+          .stats__data {
+            padding-left: 15px;
+            width: 100%;
+
+            .stat {
+              @include mixins.flex-center;
+              font-weight: 400;
+              gap: 15px;
+              width: 100%;
+
+              .stat__progress-bar {
+                border-radius: 10px;
+                position: relative;
+                width: 100%;
+
+                .progress-bar__total-progress {
+                  height: 6px;
+                  left: 0;
+                  opacity: 0.4;
+                  position: absolute;
+                  top: 0;
+                  width: 100%;
+                }
+
+                .progress-bar__current-progress {
+                  border-radius: 10px 0 0 10px;
+                  height: 6px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  :host {
+    .card-modal {
+      header {
+        margin-bottom: 20px;
+      }
+
+      .pokemon-image {
+        max-width: 85px;
+        transform: translate(-50%, 45%);
+      }
+
+      .pokemon-content {
+        padding: 15px;
+        padding-top: 40px;
+
+        h3 {
+          margin-bottom: 5px;
+        }
+
+        .pokemon-content__about {
+          padding-top: 10px;
+          padding-bottom: 7px;
+
+          .about__info {
+            gap: 0;
+            justify-content: space-between;
+            margin-inline: auto;
+            max-width: 300px;
+
+            > div {
+              border: none;
+              padding: 0;
+
+              .genetic-data {
+                p {
+                  .shopping-bag-icon {
+                    width: 13px;
+                  }
+
+                  .vertical-ruler-icon {
+                    width: 16px;
+                  }
+                }
+              }
+            }
+          }
+
+          .about__pokemon-description {
+            padding-top: 15px;
+          }
+        }
+
+        .pokemon-content__base-stats {
+          h3 {
+            margin-bottom: 15px;
+          }
+        }
       }
     }
   }
