@@ -1,0 +1,16 @@
+<li class="stat">
+  <span>{{ statValue }}</span>
+
+  <div class="stat__progress-bar">
+    <div
+      class="progress-bar__total-progress {{ pokemonType }}--background"
+    ></div>
+
+    <div
+      class="progress-bar__current-progress {{ pokemonType }}--background"
+      [ngStyle]="{
+        width: (statValue * 10) / 20 + '%'
+      }"
+    ></div>
+  </div>
+</li>

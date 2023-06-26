@@ -182,10 +182,6 @@
             @include mixins.flex-center(column);
             gap: 5px;
             list-style: none;
-
-            li {
-              font-size: 0.8rem;
-            }
           }
 
           .stats__types {
@@ -193,6 +189,7 @@
             padding-right: 15px;
 
             li {
+              font-size: 0.8rem;
               font-weight: 700;
             }
           }
@@ -200,33 +197,6 @@
           .stats__data {
             padding-left: 15px;
             width: 100%;
-
-            .stat {
-              @include mixins.flex-center;
-              font-weight: 400;
-              gap: 15px;
-              width: 100%;
-
-              .stat__progress-bar {
-                border-radius: 10px;
-                position: relative;
-                width: 100%;
-
-                .progress-bar__total-progress {
-                  height: 6px;
-                  left: 0;
-                  opacity: 0.4;
-                  position: absolute;
-                  top: 0;
-                  width: 100%;
-                }
-
-                .progress-bar__current-progress {
-                  border-radius: 10px 0 0 10px;
-                  height: 6px;
-                }
-              }
-            }
           }
         }
       }

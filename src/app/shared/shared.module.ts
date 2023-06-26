@@ -11,6 +11,8 @@ import { PokemonCardsComponent } from './components/pokemon-cards/pokemon-cards.
 import { WrapperComponent } from './components/wrapper/wrapper.component';
 import { CardModalComponent } from './components/card-modal/card-modal.component';
 import { LoaderComponent } from './components/loader/loader.component';
+import { CenterMessageComponent } from './components/center-message/center-message.component';
+import { StatComponent } from './components/card-modal/stat/stat.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { LoaderComponent } from './components/loader/loader.component';
     WrapperComponent,
     CardModalComponent,
     LoaderComponent,
+    CenterMessageComponent,
+    StatComponent,
   ],
   imports: [
     CommonModule,
@@ -42,6 +46,7 @@ import { LoaderComponent } from './components/loader/loader.component';
     CardModalComponent,
     WrapperComponent,
     LoaderComponent,
+    CenterMessageComponent,
   ],
 })
 export class SharedModule {}

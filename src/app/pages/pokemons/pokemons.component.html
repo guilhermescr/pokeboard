@@ -2,7 +2,8 @@
   <header class="header-for-search-modes">
     <form>
       <div class="mode-bar">
-        <input #searchByNameInput
+        <input
+          #searchByNameInput
           type="search"
           name="searchPokemonInput"
           id="searchPokemonInput"
@@ -17,7 +18,8 @@
           "
         />
         <ng-template #showQuantityInput>
-          <input #searchByQuantityInput
+          <input
+            #searchByQuantityInput
             type="number"
             name="maxAmountOfPokeRequests"
             id="maxAmountOfPokeRequests"
@@ -71,16 +73,13 @@
       else showQuantityMode
     "
   >
-    <p class="center-message" *ngIf="!hasSearched">
+    <app-center-message *ngIf="!hasSearched">
       A Pokémon card will show up here if you search for a NAME or ID.
-    </p>
+    </app-center-message>
 
-    <p
-      class="center-message"
-      *ngIf="pokemonIdentifier.length && pokemonNotFound"
-    >
+    <app-center-message *ngIf="pokemonIdentifier.length && pokemonNotFound">
       This Pokémon was not found. Check if you have written it correctly!
-    </p>
+    </app-center-message>
 
     <app-pokemon-cards *ngIf="pokemonList.length">
       <app-pokemon-card
@@ -92,13 +91,15 @@
 
   <ng-template #showQuantityMode>
     <section class="mode-container">
-      <p class="center-message" *ngIf="!hasSearched && !isInvalidQuantity">
-        Pokémon cards will show up here if you choose an amount of Pokémon.
-      </p>
+      <app-center-message *ngIf="!hasSearched && !isInvalidQuantity"
+        >Pokémon cards will show up here if you choose an amount of
+        Pokémon.</app-center-message
+      >
 
-      <p class="center-message" *ngIf="isInvalidQuantity">
-        You didn't give me a valid quantity. Please, enter another value.
-      </p>
+      <app-center-message *ngIf="isInvalidQuantity"
+        >You didn't give me a valid quantity. Please, enter another
+        value.</app-center-message
+      >
 
       <app-pagination-controls
         (pageChangeEvent)="onPageChange($event)"
