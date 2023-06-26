@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { forkJoin } from 'rxjs';
 import { Pokemon } from 'src/app/shared/models/pokemon.model';
 import { PokeapiService } from 'src/app/shared/services/pokeapi.service';
@@ -9,6 +9,9 @@ import { PokeapiService } from 'src/app/shared/services/pokeapi.service';
   styleUrls: ['./pokemons.component.scss'],
 })
 export class PokemonsComponent {
+  @ViewChild('searchByNameInput') searchByNameInput!: ElementRef;
+  @ViewChild('searchByQuantityInput') searchByQuantityInput!: ElementRef;
+
   pokeSearchCurrentMode: string = 'Search By Name Mode';
   pokemonIdentifier: string = '';
   pokemonQuantity: number = 1;
@@ -21,6 +24,8 @@ export class PokemonsComponent {
   pages: number = 0;
   currentPage: number = 1;
   pageLimit: number = 20;
+
+  isLoading: boolean = false;
 
   constructor(private pokeApiService: PokeapiService) {}
 
@@ -83,7 +88,8 @@ export class PokemonsComponent {
 
     if (isPokemonInPokemonList || !this.pokemonIdentifier.length) return;
 
-    this.hasSearched = true;
+    [this.hasSearched, this.isLoading] = [true, true];
+    this.searchByNameInput.nativeElement.blur();
 
     const sources = [
       this.pokeApiService.getPokemonDescription(this.pokemonIdentifier),
@@ -134,11 +140,12 @@ export class PokemonsComponent {
         };
         this.pokemonList.push(pokemon);
 
-        this.pokemonNotFound = false;
+        [this.pokemonNotFound, this.isLoading] = [false, false];
       },
       error: (error) => {
         console.error(error);
         this.pokemonNotFound = true;
+        this.isLoading = false;
       },
     });
   }
@@ -156,12 +163,15 @@ export class PokemonsComponent {
       this.pokemonQuantity = this.pokeApiService.maxAmountOfRequests;
     }
 
-    this.getPokemonByQuantity();
+    [this.hasSearched, this.isLoading] = [true, true];
+    this.searchByQuantityInput.nativeElement.blur();
+
+    setTimeout(() => {
+      this.getPokemonByQuantity();
+    }, 500);
   }
 
   getPokemonByQuantity(): void {
-    this.hasSearched = true;
-
     let pokemonId = 1;
 
     while (pokemonId <= this.pokemonQuantity) {
@@ -219,6 +229,7 @@ export class PokemonsComponent {
         error: (error) => {
           console.error(error);
           this.pokemonNotFound = true;
+          this.isLoading = false;
         },
       });
 
@@ -226,5 +237,9 @@ export class PokemonsComponent {
     }
 
     this.getAmountOfPages();
+
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 600);
   }
 }

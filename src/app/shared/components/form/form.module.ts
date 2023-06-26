@@ -10,7 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { SharedModule } from '../../shared.module';
 
 @NgModule({
-  declarations: [SigninComponent, SignupComponent],
+  declarations: [],
   imports: [
     SharedModule,
     FormsModule,
@@ -20,6 +20,11 @@ import { SharedModule } from '../../shared.module';
     MatButtonModule,
     MatIconModule,
   ],
-  exports: [FormsModule, ReactiveFormsModule],
+  exports: [
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatButtonModule,
+  ],
 })
 export class FormModule {}

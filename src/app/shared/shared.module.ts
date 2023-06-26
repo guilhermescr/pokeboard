@@ -10,6 +10,7 @@ import { MatCardModule } from '@angular/material/card';
 import { PokemonCardsComponent } from './components/pokemon-cards/pokemon-cards.component';
 import { WrapperComponent } from './components/wrapper/wrapper.component';
 import { CardModalComponent } from './components/card-modal/card-modal.component';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { CardModalComponent } from './components/card-modal/card-modal.component
     PokemonCardsComponent,
     WrapperComponent,
     CardModalComponent,
+    LoaderComponent,
   ],
   imports: [
     CommonModule,
@@ -32,12 +34,14 @@ import { CardModalComponent } from './components/card-modal/card-modal.component
     RouterModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    MatIconModule,
+    MatCardModule,
     SideBarComponent,
     PokemonCardsComponent,
     PokemonCardComponent,
     CardModalComponent,
     WrapperComponent,
-    MatIconModule,
+    LoaderComponent,
   ],
 })
 export class SharedModule {}

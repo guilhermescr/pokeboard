@@ -1,0 +1,27 @@
+@use "../../../../assets/utilities/mixins";
+
+@keyframes loading {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+:host {
+  background-color: #000000aa;
+  @include mixins.flex-center;
+  left: 0;
+  min-height: 100vh;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+
+  .loader {
+    animation: loading 1.2s linear infinite;
+    border: 5px solid #494949;
+    border-right-color: #9d171b;
+    border-radius: 50%;
+    height: 8rem;
+    width: 8rem;
+  }
+}

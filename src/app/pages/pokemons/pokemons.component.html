@@ -2,7 +2,7 @@
   <header class="header-for-search-modes">
     <form>
       <div class="mode-bar">
-        <input
+        <input #searchByNameInput
           type="search"
           name="searchPokemonInput"
           id="searchPokemonInput"
@@ -17,7 +17,7 @@
           "
         />
         <ng-template #showQuantityInput>
-          <input
+          <input #searchByQuantityInput
             type="number"
             name="maxAmountOfPokeRequests"
             id="maxAmountOfPokeRequests"
@@ -124,3 +124,5 @@
     </section>
   </ng-template>
 </app-wrapper>
+
+<app-loader *ngIf="isLoading"></app-loader>
