@@ -1,0 +1,28 @@
+<section class="user">
+  <div class="profile-picture-container">
+    <button
+      type="button"
+      class="toggle-profile-picture-button"
+      (click)="toggleCurrentProfilePicture()"
+    >
+      <mat-icon
+        aria-hidden="false"
+        aria-label="Toggle Icon"
+        fontIcon="compare_arrows"
+      ></mat-icon>
+    </button>
+
+    <img
+      src="{{
+        isAshProfilePicture ? ashKetchumProfilePicture : serenaProfilePicture
+      }}"
+      alt="Ash Ketchum"
+      class="profile-picture"
+    />
+  </div>
+
+  <h3>{{ userData.name }}</h3>
+
+  <span>Favorite Pokémons: {{ userData.favoritePokemonList.length }}</span>
+  <span>City, State/Province, Country</span>
+</section>

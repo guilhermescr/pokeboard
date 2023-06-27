@@ -8,32 +8,23 @@ import { AuthService } from 'src/app/shared/services/auth.service';
   styleUrls: ['./my-profile.component.scss'],
 })
 export class MyProfileComponent {
-  user: User;
-  isPasswordVisible: boolean = false;
+  user: User = this.authService.getCurrentUser()!;
+  isUserLinksCrudOpen: boolean = false;
+  isUserDataCrudOpen: boolean = false;
 
-  constructor(private authService: AuthService) {
-    this.user = this.authService.getCurrentUser()!;
+  constructor(private authService: AuthService) {}
+
+  ngOnInit(): void {
+    this.authService.currentUser.subscribe((currentUserData) => {
+      this.user = currentUserData!;
+    });
   }
 
-  showPassword(): void {
-    this.isPasswordVisible = true;
+  openUserLinksCrud(): void {
+    this.isUserLinksCrudOpen = true;
   }
 
-  hidePassword(): void {
-    this.isPasswordVisible = false;
-  }
-
-  getPasswordHiddenCharacters(): string {
-    const passwordLength = this.user.password.split('').length;
-    let passwordHiddenCharacters = '';
-    let index = 0;
-
-    while (index < passwordLength) {
-      passwordHiddenCharacters += '*';
-
-      index++;
-    }
-
-    return passwordHiddenCharacters;
+  closeUserLinksCrud(): void {
+    this.isUserLinksCrudOpen = false;
   }
 }

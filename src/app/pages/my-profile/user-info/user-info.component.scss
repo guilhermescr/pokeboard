@@ -1,0 +1,49 @@
+@use "../../../../assets/utilities/mixins";
+
+:host {
+  .user {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 4px #00000088 inset;
+    @include mixins.flex-center(column);
+    gap: 4px;
+    padding: 20px;
+
+    .profile-picture-container {
+      position: relative;
+
+      .toggle-profile-picture-button {
+        background-color: #9d171b;
+        border: none;
+        border-radius: 50%;
+        color: #fff;
+        cursor: pointer;
+        @include mixins.flex-center;
+        left: -35%;
+        padding: 7px;
+        position: absolute;
+
+        &:hover {
+          filter: saturate(0.8);
+        }
+
+        &:active {
+          opacity: 0.9;
+        }
+
+        &:focus {
+          @include mixins.focusForTabIndex;
+        }
+      }
+
+      .profile-picture {
+        margin-bottom: 5px;
+        max-width: 130px;
+      }
+    }
+
+    span {
+      color: #686868;
+    }
+  }
+}

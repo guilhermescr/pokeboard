@@ -14,7 +14,7 @@
   background-color: #00000088;
   display: flex;
   @include mixins.flex-center;
-  min-height: 100vh;
+  height: 100%;
   left: 50%;
   padding: 15px;
   position: fixed;

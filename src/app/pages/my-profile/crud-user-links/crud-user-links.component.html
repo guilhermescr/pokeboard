@@ -1,0 +1,130 @@
+<section class="crud-user-links">
+  <button
+    class="close-user-links-crud-button"
+    (click)="fireCloseUserLinksCrudEvent()"
+  >
+    <mat-icon
+      aria-hidden="false"
+      aria-label="Close Icon"
+      fontIcon="close"
+    ></mat-icon>
+  </button>
+
+  <h2>Edit Links</h2>
+
+  <form class="links-form" [formGroup]="linksForm">
+    <section class="link-fields">
+      <div class="link-field website-field" formGroupName="websiteGroup">
+        <div class="link-url-field">
+          <label for="websiteUrl">Website URL:</label>
+          <input
+            type="text"
+            formControlName="urlControl"
+            id="websiteUrl"
+            name="websiteUrl"
+          />
+        </div>
+
+        <div class="link-placeholder-field">
+          <label for="websitePlaceholder">Website Placeholder:</label>
+          <input
+            type="text"
+            formControlName="placeholderControl"
+            id="websitePlaceholder"
+            name="websitePlaceholder"
+          />
+        </div>
+      </div>
+
+      <div class="link-field github-field" formGroupName="githubGroup">
+        <div class="link-url-field">
+          <label for="githubUrl">GitHub URL:</label>
+          <input
+            type="text"
+            formControlName="urlControl"
+            id="githubUrl"
+            name="githubUrl"
+          />
+        </div>
+
+        <div class="link-placeholder-field">
+          <label for="githubPlaceholder">GitHub Placeholder:</label>
+          <input
+            type="text"
+            formControlName="placeholderControl"
+            id="githubPlaceholder"
+            name="githubPlaceholder"
+          />
+        </div>
+      </div>
+
+      <div class="link-field linkedin-field" formGroupName="linkedinGroup">
+        <div class="link-url-field">
+          <label for="linkedinUrl">LinkedIn URL:</label>
+          <input
+            type="text"
+            formControlName="urlControl"
+            id="linkedinUrl"
+            name="linkedinUrl"
+          />
+        </div>
+
+        <div class="link-placeholder-field">
+          <label for="linkedinPlaceholder">LinkedIn Placeholder:</label>
+          <input
+            type="text"
+            formControlName="placeholderControl"
+            id="linkedinPlaceholder"
+            name="linkedinPlaceholder"
+          />
+        </div>
+      </div>
+
+      <div class="link-field instagram-field" formGroupName="instagramGroup">
+        <div class="link-url-field">
+          <label for="instagramUrl">Instagram URL:</label>
+          <input
+            type="text"
+            formControlName="urlControl"
+            id="instagramUrl"
+            name="instagramUrl"
+          />
+        </div>
+
+        <div class="link-placeholder-field">
+          <label for="instagramPlaceholder">Instagram Placeholder:</label>
+          <input
+            type="text"
+            formControlName="placeholderControl"
+            id="instagramPlaceholder"
+            name="instagramPlaceholder"
+          />
+        </div>
+      </div>
+
+      <div class="link-field youtube-field" formGroupName="youtubeGroup">
+        <div class="link-url-field">
+          <label for="youtubeUrl">YouTube URL:</label>
+          <input
+            type="text"
+            formControlName="urlControl"
+            id="youtubeUrl"
+            name="youtubeUrl"
+          />
+        </div>
+
+        <div class="link-placeholder-field">
+          <label for="youtubePlaceholder">YouTube Placeholder:</label>
+          <input
+            type="text"
+            formControlName="placeholderControl"
+            id="youtubePlaceholder"
+            name="youtubePlaceholder"
+          />
+        </div>
+      </div>
+    </section>
+
+    <button class="save-links-button" (click)="saveLinks()">Save Links</button>
+  </form>
+</section>

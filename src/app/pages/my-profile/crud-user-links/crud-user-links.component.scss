@@ -1,0 +1,161 @@
+@use "../../../../assets/utilities/mixins";
+
+@keyframes showUserLinksCrudAnimation {
+  0% {
+    transform: scale(0) translateY(-100%);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+:host {
+  background-color: #000000aa;
+  @include mixins.flex-center;
+  left: 0;
+  min-height: 100vh;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+
+  .crud-user-links {
+    animation: showUserLinksCrudAnimation 0.15s linear;
+    background-color: #9d171b;
+    border-radius: 7px;
+    box-shadow: 0 0 5px #00000088 inset;
+    max-width: 500px;
+    padding: 20px;
+    position: relative;
+
+    .close-user-links-crud-button {
+      background-color: #302e2e;
+      border: none;
+      border-radius: 50%;
+      color: #fff;
+      cursor: pointer;
+      @include mixins.flex-center;
+      padding: 3px;
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      transform: scale(1.2);
+
+      &:hover {
+        background-color: #443e3e;
+      }
+
+      &:active {
+        opacity: 0.9;
+      }
+    }
+
+    h2 {
+      color: #fff;
+      font-size: 1.8rem;
+    }
+
+    .links-form {
+      .link-fields {
+        display: grid;
+        gap: 15px;
+        grid-template-areas:
+          "website-field github-field"
+          "linkedin-field instagram-field"
+          "youtube-field youtube-field";
+
+        .link-field {
+          label {
+            color: #fff;
+            display: block;
+            font-size: 1.05rem;
+            font-weight: 500;
+            padding: 5px;
+          }
+
+          input {
+            background-color: #242222;
+            border: 1px solid #977272;
+            border-radius: 4px;
+            color: #fff;
+            padding: 5px;
+            width: 100%;
+
+            &:focus {
+              @include mixins.focusForTabIndex(#646262);
+            }
+          }
+
+          > div:first-child {
+            margin-bottom: 10px;
+          }
+        }
+
+        .website-field {
+          grid-area: website-field;
+        }
+
+        .github-field {
+          grid-area: github-field;
+        }
+
+        .linkedin-field {
+          grid-area: linkedin-field;
+        }
+
+        .instagram-field {
+          grid-area: instagram-field;
+        }
+
+        .youtube-field {
+          grid-area: youtube-field;
+        }
+      }
+
+      .save-links-button {
+        background-color: #242222;
+        border: none;
+        border-radius: 2rem;
+        color: #fff;
+        cursor: pointer;
+        display: block;
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-inline: auto;
+        margin-top: 20px;
+        padding: 15px 25px;
+
+        &:hover {
+          background-color: #302c2c;
+        }
+
+        &:active {
+          background-color: #201f1f;
+        }
+
+        &:focus {
+          @include mixins.focusForTabIndex(#646262);
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  :host {
+    .crud-user-links {
+      .links-form {
+        .link-fields {
+          // gap: 15px;
+          // grid-template-areas:
+          //   "website-field"
+          //   "github-field"
+          //   "linkedin-field"
+          //   "instagram-field"
+          //   "youtube-field";
+        }
+      }
+    }
+  }
+}

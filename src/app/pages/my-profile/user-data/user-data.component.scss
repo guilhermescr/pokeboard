@@ -1,0 +1,133 @@
+@use "../../../../assets/utilities/mixins";
+
+:host {
+  .user-data {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 4px #00000088 inset;
+    @include mixins.flex-center;
+    height: 100%;
+    padding-inline: 15px;
+    position: relative;
+
+    .edit-button {
+      background-color: #9d171b;
+      border: none;
+      border-radius: 50%;
+      color: #fff;
+      cursor: pointer;
+      @include mixins.flex-center;
+      gap: 5px;
+      padding: 10px;
+      position: absolute;
+      right: -2.5%;
+      top: -8%;
+
+      &:hover {
+        filter: saturate(0.8);
+      }
+
+      &:focus {
+        @include mixins.focusForTabIndex;
+      }
+
+      .edit-icon {
+        cursor: pointer;
+        @include mixins.flex-center;
+        transition: all 0.15s ease-in-out;
+      }
+    }
+
+    ul {
+      @include mixins.flex-center(column);
+      gap: 5px;
+      justify-content: space-between;
+      list-style: none;
+      width: 100%;
+
+      li {
+        border-bottom: 2px solid #eee;
+        @include mixins.flex-center;
+        justify-content: space-between;
+
+        padding-block: 15px;
+        width: 100%;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        .password-item {
+          display: flex;
+        }
+
+        span {
+          display: inline-block;
+        }
+
+        > span:first-child {
+          font-weight: 600;
+        }
+
+        > span:last-child {
+          width: 60%;
+        }
+
+        .password-data {
+          display: flex;
+          gap: 15px;
+
+          span {
+            align-self: flex-end;
+            padding-top: 2px;
+          }
+
+          .eye-icon {
+            cursor: pointer;
+            font-size: 1.4rem;
+            transition: all 0.15s ease-in-out;
+
+            &:hover {
+              transform: scale(1.02);
+            }
+          }
+
+          .hide-password-eye-icon {
+            width: 24px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  :host {
+    .user-data {
+      .edit-button {
+        padding: 7px;
+        right: -7%;
+
+        .edit-icon {
+          font-size: 1.35rem;
+        }
+      }
+
+      ul {
+        li {
+          @include mixins.flex-center;
+          justify-content: space-between;
+
+          > span:first-child {
+            width: auto;
+          }
+
+          > span:last-child {
+            text-align: end;
+            width: auto;
+          }
+        }
+      }
+    }
+  }
+}

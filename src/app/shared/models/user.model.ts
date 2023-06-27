@@ -6,4 +6,26 @@ export interface User {
   email: string;
   password: string;
   favoritePokemonList: Pokemon[];
+  links?: {
+    website: {
+      url: string;
+      placeholder: string;
+    },
+    github: {
+      url: string;
+      placeholder: string;
+    },
+    linkedin: {
+      url: string;
+      placeholder: string;
+    },
+    instagram: {
+      url: string;
+      placeholder: string;
+    },
+    youtube: {
+      url: string;
+      placeholder: string;
+    },
+  }
 }
