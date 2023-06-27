@@ -29,7 +29,6 @@ export class AuthService {
   ];
 
   constructor(private router: Router) {
-    // delete it or no
     this.currentUser.subscribe((currentUserData) => {
       if (currentUserData) {
         this.updateUsers(currentUserData);

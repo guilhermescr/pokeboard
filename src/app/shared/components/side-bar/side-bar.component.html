@@ -38,7 +38,7 @@
   <header class="side-bar__header">
     <a routerLink="/board" (click)="closeSideBar()">
       <img
-        src="../../../../assets/img/pokeball-in-the-grass.png"
+        src="../../../../assets/img/pokeball-in-the-grass.webp"
         alt="PokéBoard Logo, which is a Poké Ball surrounded by grass"
       />
 
@@ -109,7 +109,11 @@
 </nav>
 
 <ng-template #showBurgerButton>
-  <button (click)="openSideBar()" class="open-side-bar-burger-button" tabindex="1">
+  <button
+    (click)="openSideBar()"
+    class="open-side-bar-burger-button"
+    tabindex="1"
+  >
     <span class="open-side-bar-burger-button__bar"></span>
     <span class="open-side-bar-burger-button__bar"></span>
     <span class="open-side-bar-burger-button__bar"></span>
