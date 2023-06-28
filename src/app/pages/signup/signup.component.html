@@ -114,7 +114,7 @@
             aria-label="Warning Icon"
             fontIcon="warning"
           ></mat-icon>
-          Password should have 8 characters or more</mat-hint
+          Password must have between 8 and 16 characters</mat-hint
         >
 
         <div class="input-field">
@@ -150,7 +150,9 @@
         Create Account
       </button>
 
-      <p class="other-auth-option">Already have an account? <a routerLink="/signin">Sign In</a></p>
+      <p class="other-auth-option">
+        Already have an account? <a routerLink="/signin">Sign In</a>
+      </p>
     </mat-card-actions>
   </mat-card>
 </form>

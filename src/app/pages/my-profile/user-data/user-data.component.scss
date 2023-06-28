@@ -132,3 +132,17 @@
     }
   }
 }
+
+@media (max-width: 320px) {
+  :host {
+    .user-data {
+      ul {
+        li {
+          .password-data {
+            gap: 4px;
+          }
+        }
+      }
+    }
+  }
+}

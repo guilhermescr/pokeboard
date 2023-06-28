@@ -8,6 +8,33 @@
     @include mixins.flex-center(column);
     gap: 4px;
     padding: 20px;
+    position: relative;
+
+    .delete-account-button {
+      background-color: #9d171b;
+      border: none;
+      border-radius: 50%;
+      color: #fff;
+      cursor: pointer;
+      @include mixins.flex-center;
+      padding: 7px;
+      position: absolute;
+      right: 15px;
+      top: 15px;
+      z-index: 1;
+
+      &:hover {
+        filter: saturate(0.8);
+      }
+
+      &:active {
+        opacity: 0.9;
+      }
+
+      &:focus {
+        @include mixins.focusForTabIndex;
+      }
+    }
 
     .profile-picture-container {
       position: relative;
@@ -44,6 +71,22 @@
 
     span {
       color: #686868;
+    }
+  }
+}
+
+@media (max-width: 425px) {
+  :host {
+    .user {
+      .profile-picture-container {
+        @include mixins.flex-center;
+        width: 100%;
+
+        .toggle-profile-picture-button {
+          left: -5px;
+          top: -5px;
+        }
+      }
     }
   }
 }

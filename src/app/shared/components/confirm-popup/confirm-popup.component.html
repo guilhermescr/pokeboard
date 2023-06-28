@@ -1,0 +1,10 @@
+<section class="confirm-popup">
+  <h2>Confirmation</h2>
+
+  <p>Are you <strong>sure</strong> you want {{ popupMessage }}?</p>
+
+  <div class="confirm-popup__buttons">
+    <button (click)="callYesMethod()">Yes</button>
+    <button (click)="closeConfirmPopupEvent.emit()">No</button>
+  </div>
+</section>

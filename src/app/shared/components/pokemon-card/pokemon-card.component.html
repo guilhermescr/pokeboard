@@ -25,20 +25,22 @@
       </ng-template>
     </mat-card-title-group>
 
-    <mat-icon
-      #starIcon
-      class="star-icon"
-      aria-hidden="false"
-      aria-label="Star Icon"
-      role="button"
-      tabindex="0"
-      fontIcon="{{ !isHover ? 'star_border' : 'star' }}"
-      (click)="
-        !isFavorite ? markPokemonAsFavorite() : unmarkPokemonAsFavorite()
-      "
-      (mouseenter)="!isFavorite ? onMouseEnterStar() : null"
-      (mouseleave)="!isFavorite ? onMouseLeaveStar() : null"
-    ></mat-icon>
+    <button
+      class="mark-pokemon-as-favorite-button"
+      (click)="!isFavorite ? markPokemonAsFavorite() : openConfirmPopup()"
+    >
+      <mat-icon
+        #starIcon
+        class="star-icon"
+        aria-hidden="false"
+        aria-label="Star Icon"
+        role="button"
+        tabindex="0"
+        fontIcon="{{ !isHover ? 'star_border' : 'star' }}"
+        (mouseenter)="!isFavorite ? onMouseEnterStar() : null"
+        (mouseleave)="!isFavorite ? onMouseLeaveStar() : null"
+      ></mat-icon>
+    </button>
   </mat-card-header>
 
   <mat-card-content>
@@ -65,3 +67,11 @@
   (click)="handleClickEvent($event)"
   id="appCardModal"
 ></app-card-modal>
+
+<app-confirm-popup
+  *ngIf="isPopupOpen"
+  [popupMessage]="unmarkFavoritePokemonMessage"
+  [yesMethod]="'unmarkPokemonAsFavorite'"
+  (isUnmarkFavoritePokemonAllowedEvent)="unmarkPokemonAsFavorite()"
+  (closeConfirmPopupEvent)="closeConfirmPopup()"
+></app-confirm-popup>

@@ -25,7 +25,10 @@ export class SignupComponent {
         Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}'),
       ],
     ],
-    password: ['', [Validators.required, Validators.minLength(8)]],
+    password: [
+      '',
+      [Validators.required, Validators.minLength(8), Validators.maxLength(16)],
+    ],
   });
   accountDoesExist: boolean = false;
 
@@ -45,6 +48,7 @@ export class SignupComponent {
       const newUser: User = {
         id: uuidv4(),
         name: this.signUpForm.value.name,
+        currentProfilePicture: 'Ash',
         email: this.signUpForm.value.email,
         password: this.signUpForm.value.password,
         favoritePokemonList: [],

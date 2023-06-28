@@ -11,6 +11,7 @@ export class AuthService {
     new BehaviorSubject<User | null>({
       id: '1',
       name: 'guilhermescr',
+      currentProfilePicture: 'Ash',
       email: 'devguiga@gmail.com',
       password: 'omelhorem2023',
       favoritePokemonList: [],
@@ -22,6 +23,7 @@ export class AuthService {
     {
       id: '1',
       name: 'guilhermescr',
+      currentProfilePicture: 'Ash',
       email: 'devguiga@gmail.com',
       password: 'omelhorem2023',
       favoritePokemonList: [],
@@ -62,15 +64,16 @@ export class AuthService {
   }
 
   logOut(): void {
-    /*
-      Delete Account Code:
-      this.users = this.users.filter(
-      (user) => user.email !== this.currentUserSubject.value?.email
-    );
-    */
-
     this.currentUserSubject.next(null);
     this.router.navigateByUrl('/signin');
+  }
+
+  deleteAccount(): void {
+    this.users = this.users.filter(
+      (user) => user.email !== this.currentUserSubject.value?.email
+    );
+
+    this.logOut();
   }
 
   isNewAccount(user: User): boolean {

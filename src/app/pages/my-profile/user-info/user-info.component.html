@@ -1,4 +1,12 @@
 <section class="user">
+  <button class="delete-account-button" (click)="openConfirmPopup()">
+    <mat-icon
+      aria-hidden="false"
+      aria-label="Delete Icon"
+      fontIcon="delete"
+    ></mat-icon>
+  </button>
+
   <div class="profile-picture-container">
     <button
       type="button"
@@ -14,7 +22,9 @@
 
     <img
       src="{{
-        isAshProfilePicture ? ashKetchumProfilePicture : serenaProfilePicture
+        currentProfilePicture === 'Ash'
+          ? ashKetchumProfilePicture
+          : serenaProfilePicture
       }}"
       alt="Ash Ketchum"
       class="profile-picture"
@@ -26,3 +36,10 @@
   <span>Favorite Pokémons: {{ userData.favoritePokemonList.length }}</span>
   <span>City, State/Province, Country</span>
 </section>
+
+<app-confirm-popup
+  *ngIf="isPopupOpen"
+  [popupMessage]="deleteMessage"
+  [yesMethod]="'delete'"
+  (closeConfirmPopupEvent)="closeConfirmPopup()"
+></app-confirm-popup>

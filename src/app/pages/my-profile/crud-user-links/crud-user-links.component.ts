@@ -106,8 +106,6 @@ export class CrudUserLinksComponent {
         links,
       });
       this.fireCloseUserLinksCrudEvent();
-    } else {
-      // do nothing
     }
   }
 }

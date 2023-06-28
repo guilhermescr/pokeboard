@@ -22,8 +22,17 @@
       @include mixins.focusForTabIndex(#eca509);
     }
 
-    .star-icon {
-      color: #eca509;
+    .mark-pokemon-as-favorite-button {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      height: max-content;
+      justify-content: flex-end;
+
+      .star-icon {
+        color: #eca509;
+      }
     }
 
     .types {

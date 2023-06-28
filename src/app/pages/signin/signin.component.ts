@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { User } from 'src/app/shared/models/user.model';
 import { AuthService } from 'src/app/shared/services/auth.service';
-import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-signin',
@@ -24,7 +23,10 @@ export class SigninComponent {
         Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}'),
       ],
     ],
-    password: ['', [Validators.required, Validators.minLength(8)]],
+    password: [
+      '',
+      [Validators.required, Validators.minLength(8), Validators.maxLength(16)],
+    ],
   });
   accountNotFound: boolean = false;
 

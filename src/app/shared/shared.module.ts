@@ -13,6 +13,7 @@ import { CardModalComponent } from './components/card-modal/card-modal.component
 import { LoaderComponent } from './components/loader/loader.component';
 import { CenterMessageComponent } from './components/center-message/center-message.component';
 import { StatComponent } from './components/card-modal/stat/stat.component';
+import { ConfirmPopupComponent } from './components/confirm-popup/confirm-popup.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { StatComponent } from './components/card-modal/stat/stat.component';
     LoaderComponent,
     CenterMessageComponent,
     StatComponent,
+    ConfirmPopupComponent,
   ],
   imports: [
     CommonModule,
@@ -47,6 +49,7 @@ import { StatComponent } from './components/card-modal/stat/stat.component';
     WrapperComponent,
     LoaderComponent,
     CenterMessageComponent,
+    ConfirmPopupComponent,
   ],
 })
 export class SharedModule {}
