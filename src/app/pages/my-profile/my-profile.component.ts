@@ -27,4 +27,12 @@ export class MyProfileComponent {
   closeUserLinksCrud(): void {
     this.isUserLinksCrudOpen = false;
   }
+
+  openUserDataCrud(): void {
+    this.isUserDataCrudOpen = true;
+  }
+
+  closeUserDataCrud(): void {
+    this.isUserDataCrudOpen = false;
+  }
 }

@@ -48,7 +48,9 @@
   <h3>{{ userData.name }}</h3>
 
   <span>Favorite Pokémons: {{ userData.favoritePokemonList.length }}</span>
-  <span>City, State/Province, Country</span>
+  <span>{{
+    userData.address ? userData.address : "City, State/Province, Country"
+  }}</span>
 </section>
 
 <app-confirm-popup

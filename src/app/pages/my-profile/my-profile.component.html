@@ -3,7 +3,10 @@
 <section class="user-profile">
   <app-user-info [userData]="user"></app-user-info>
 
-  <app-user-data [userData]="user"></app-user-data>
+  <app-user-data
+    (openUserDataCrudEvent)="openUserDataCrud()"
+    [userData]="user"
+  ></app-user-data>
 
   <app-user-links
     (openUserLinksCrudEvent)="openUserLinksCrud()"
@@ -24,3 +27,9 @@
   (closeUserLinksCrudEvent)="closeUserLinksCrud()"
   *ngIf="isUserLinksCrudOpen"
 ></app-crud-user-links>
+
+<app-crud-user-data
+  [userData]="user"
+  (closeUserDataCrudEvent)="closeUserDataCrud()"
+  *ngIf="isUserDataCrudOpen"
+></app-crud-user-data>

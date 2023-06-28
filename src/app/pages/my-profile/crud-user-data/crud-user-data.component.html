@@ -1,1 +1,155 @@
-<p>crud-user-data works!</p>
+<section class="user-data-crud">
+  <button
+    class="close-user-data-crud-button"
+    (click)="fireCloseUserDataCrudEvent()"
+  >
+    <mat-icon
+      aria-hidden="false"
+      aria-label="Close Icon"
+      fontIcon="close"
+    ></mat-icon>
+  </button>
+
+  <h2>Edit Profile</h2>
+
+  <form [formGroup]="profileForm">
+    <div class="profile-field">
+      <span
+        class="invalid-message"
+        *ngIf="
+          !areTheseDataAvailable.name ||
+          (this.profileForm.controls.name.invalid &&
+            (this.profileForm.controls.name.dirty ||
+              this.profileForm.controls.name.touched))
+        "
+        >{{
+          !areTheseDataAvailable.name
+            ? "This name is not available."
+            : "Name is required."
+        }}</span
+      >
+
+      <label for="name">Name:</label>
+      <div>
+        <input type="text" id="name" name="name" formControlName="name" />
+      </div>
+    </div>
+
+    <div class="profile-field">
+      <span
+        class="invalid-message"
+        *ngIf="
+          !areTheseDataAvailable.email ||
+          (this.profileForm.controls.email.invalid &&
+            (this.profileForm.controls.email.dirty ||
+              this.profileForm.controls.email.touched))
+        "
+        >{{
+          !areTheseDataAvailable.email
+            ? "This e-mail is not available."
+            : "E-mail is required."
+        }}</span
+      >
+
+      <label for="email">E-mail:</label>
+      <div>
+        <input type="text" id="email" name="email" formControlName="email" />
+      </div>
+    </div>
+
+    <div class="profile-field">
+      <span
+        class="invalid-message"
+        *ngIf="
+          this.profileForm.controls.password.invalid &&
+          (this.profileForm.controls.password.dirty ||
+            this.profileForm.controls.password.touched)
+        "
+        >*Password must have between 8 and 16 characters.</span
+      >
+
+      <label for="password">Password:</label>
+      <div>
+        <input
+          type="{{ !isPasswordVisible ? 'password' : 'text' }}"
+          id="password"
+          name="password"
+          formControlName="password"
+        />
+
+        <button
+          type="button"
+          [ngClass]="
+            !isPasswordVisible ? 'show-password-button' : 'hide-password-button'
+          "
+          class="eye-button"
+          (click)="!isPasswordVisible ? showPassword() : hidePassword()"
+        >
+          <mat-icon
+            aria-hidden="false"
+            aria-label="Eye Icon"
+            fontIcon="remove_red_eye"
+            *ngIf="!isPasswordVisible; else hidePasswordEyeIcon"
+          ></mat-icon>
+
+          <ng-template #hidePasswordEyeIcon>
+            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0 0h48v48H0z" fill="none" />
+              <g id="Shopicon">
+                <path
+                  d="M11.957,33.214L7.171,38L10,40.828l5.305-5.305C17.867,36.992,20.788,38,24,38c12,0,20-14,20-14s-2.953-5.159-7.957-9.214
+                L40.829,10L38,7.172l-5.305,5.305C30.133,11.008,27.212,10,24,10C12,10,4,24,4,24S6.953,29.159,11.957,33.214z M16,24
+                c0-4.418,3.582-8,8-8c1.483,0,2.867,0.411,4.058,1.114l-3.035,3.035C24.694,20.062,24.356,20,24,20c-2.206,0-4,1.794-4,4
+                c0,0.356,0.062,0.694,0.149,1.023l-3.035,3.035C16.411,26.867,16,25.483,16,24z M32,24c0,4.418-3.582,8-8,8
+                c-1.483,0-2.867-0.411-4.058-1.114l3.035-3.035C23.306,27.938,23.644,28,24,28c2.206,0,4-1.794,4-4
+                c0-0.356-0.062-0.694-0.149-1.023l3.035-3.035C31.589,21.133,32,22.517,32,24z"
+                />
+              </g>
+            </svg>
+          </ng-template>
+        </button>
+      </div>
+    </div>
+
+    <div class="profile-field">
+      <span
+        class="invalid-message"
+        *ngIf="
+          this.profileForm.controls.address.invalid &&
+          (this.profileForm.controls.address.dirty ||
+            this.profileForm.controls.address.touched)
+        "
+        >*Address is required.</span
+      >
+
+      <label for="address">Address:</label>
+      <div>
+        <input
+          type="text"
+          id="address"
+          name="address"
+          formControlName="address"
+        />
+      </div>
+    </div>
+
+    <button
+      type="button"
+      class="save-profile-data-button"
+      [class.disabled]="
+        profileForm.invalid ||
+        !areTheseDataAvailable.name ||
+        !areTheseDataAvailable.email
+      "
+      (click)="
+        profileForm.valid &&
+        areTheseDataAvailable.name &&
+        areTheseDataAvailable.email
+          ? saveUserData()
+          : null
+      "
+    >
+      Save Data
+    </button>
+  </form>
+</section>

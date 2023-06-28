@@ -25,6 +25,7 @@
     background-color: #9d171b;
     border-radius: 7px;
     box-shadow: 0 0 5px #00000088 inset;
+    max-height: 100vh;
     max-width: 500px;
     overflow-y: auto;
     padding: 20px;
@@ -151,6 +152,7 @@
           background-color: #ccc;
           color: #aaa;
           cursor: not-allowed;
+          user-select: none;
         }
       }
     }
@@ -160,7 +162,6 @@
 @media (max-width: 768px) {
   :host {
     .crud-user-links {
-      max-height: 570px;
       max-width: auto;
       width: 90%;
 

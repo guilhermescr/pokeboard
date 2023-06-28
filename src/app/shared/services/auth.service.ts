@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { User } from '../models/user.model';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({
   providedIn: 'root',
@@ -26,6 +27,22 @@ export class AuthService {
       currentProfilePicture: 'Ash',
       email: 'devguiga@gmail.com',
       password: 'omelhorem2023',
+      favoritePokemonList: [],
+    },
+    {
+      id: uuidv4(),
+      name: 'Carlos Gabriel',
+      currentProfilePicture: 'Ash',
+      email: 'cacagabi@gmail.com',
+      password: 'cacagabi2023',
+      favoritePokemonList: [],
+    },
+    {
+      id: uuidv4(),
+      name: 'Treinadora Do Mato',
+      currentProfilePicture: 'Serena',
+      email: 'treinadoradomato@gmail.com',
+      password: 'treinadora2023',
       favoritePokemonList: [],
     },
   ];
@@ -70,10 +87,33 @@ export class AuthService {
 
   deleteAccount(): void {
     this.users = this.users.filter(
-      (user) => user.email !== this.currentUserSubject.value?.email
+      (user) => user.id !== this.currentUserSubject.value?.id
     );
 
     this.logOut();
+  }
+
+  isNewDataAvailable(isName: boolean, newData: string): boolean {
+    const usersWithoutCurrentUser = this.users.filter(
+      (user) => user.id !== this.currentUserSubject.value?.id
+    );
+
+    if (
+      this.getCurrentUser()?.name === newData ||
+      this.getCurrentUser()?.email === newData
+    ) {
+      return true;
+    } else if (isName) {
+      return (
+        usersWithoutCurrentUser.find((user) => user.name === newData) ===
+        undefined
+      );
+    } else {
+      return (
+        usersWithoutCurrentUser.find((user) => user.email === newData) ===
+        undefined
+      );
+    }
   }
 
   isNewAccount(user: User): boolean {

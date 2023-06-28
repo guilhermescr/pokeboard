@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { User } from 'src/app/shared/models/user.model';
 
 @Component({
@@ -7,6 +7,7 @@ import { User } from 'src/app/shared/models/user.model';
   styleUrls: ['./user-data.component.scss'],
 })
 export class UserDataComponent {
+  @Output() openUserDataCrudEvent = new EventEmitter();
   @Input() userData!: User;
   isPasswordVisible: boolean = false;
 
@@ -30,5 +31,9 @@ export class UserDataComponent {
     }
 
     return passwordHiddenCharacters;
+  }
+
+  fireOpenUserDataCrudEvent(): void {
+    this.openUserDataCrudEvent.emit();
   }
 }

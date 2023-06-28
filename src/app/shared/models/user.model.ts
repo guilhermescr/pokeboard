@@ -6,6 +6,7 @@ export interface User {
   currentProfilePicture?: string;
   email: string;
   password: string;
+  address?: string;
   favoritePokemonList: Pokemon[];
   links?: {
     website: {

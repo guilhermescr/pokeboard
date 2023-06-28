@@ -72,3 +72,13 @@
     }
   }
 }
+
+@media (max-width: 320px) {
+  :host {
+    .confirm-popup {
+      .confirm-popup__buttons {
+        display: flex;
+      }
+    }
+  }
+}

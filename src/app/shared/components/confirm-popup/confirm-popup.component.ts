@@ -19,6 +19,9 @@ export class ConfirmPopupComponent {
       case 'delete':
         this.authService.deleteAccount();
         break;
+      case 'logout':
+        this.authService.logOut();
+        break;
       case 'unmarkPokemonAsFavorite':
         this.isUnmarkFavoritePokemonAllowedEvent.emit();
         this.closeConfirmPopupEvent.emit();
