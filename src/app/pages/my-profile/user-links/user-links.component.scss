@@ -15,7 +15,7 @@
       padding: 7px;
       position: absolute;
       right: -4.5%;
-      top: -8%;
+      top: -22px;
 
       &:hover {
         filter: saturate(0.8);
@@ -98,7 +98,8 @@
   :host {
     .links {
       .edit-button {
-        right: -7%;
+        padding: 5px;
+        right: -13px;
       }
     }
   }

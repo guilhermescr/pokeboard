@@ -52,9 +52,14 @@
       </span>
 
       <span>
-        <a href="#" target="_blank" rel="external">{{
-          userData.links ? userData.links.website.placeholder : "Website Name"
-        }}</a>
+        <a
+          href="{{ userData.links ? userData.links.website.url : '#' }}"
+          target="_blank"
+          rel="external"
+          >{{
+            userData.links ? userData.links.website.placeholder : "Website Name"
+          }}</a
+        >
       </span>
     </li>
 
@@ -82,9 +87,16 @@
       </span>
 
       <span>
-        <a href="#" target="_blank" rel="external">{{
-          userData.links ? userData.links.github.placeholder : "GitHub Username"
-        }}</a>
+        <a
+          href="{{ userData.links ? userData.links.github.url : '#' }}"
+          target="_blank"
+          rel="external"
+          >{{
+            userData.links
+              ? userData.links.github.placeholder
+              : "GitHub Username"
+          }}</a
+        >
       </span>
     </li>
 
@@ -110,11 +122,16 @@
       </span>
 
       <span>
-        <a href="#" target="_blank" rel="external">{{
-          userData.links
-            ? userData.links.linkedin.placeholder
-            : "LinkedIn Username"
-        }}</a>
+        <a
+          href="{{ userData.links ? userData.links.linkedin.url : '#' }}"
+          target="_blank"
+          rel="external"
+          >{{
+            userData.links
+              ? userData.links.linkedin.placeholder
+              : "LinkedIn Username"
+          }}</a
+        >
       </span>
     </li>
 
@@ -206,9 +223,14 @@
       </span>
 
       <span>
-        <a href="{{ userData.links ? userData.links.instagram.url : '#' }}" target="_blank" rel="external">{{
-          userData.links ? userData.links.instagram.placeholder : "Your @here"
-        }}</a>
+        <a
+          href="{{ userData.links ? userData.links.instagram.url : '#' }}"
+          target="_blank"
+          rel="external"
+          >{{
+            userData.links ? userData.links.instagram.placeholder : "Your @here"
+          }}</a
+        >
       </span>
     </li>
 

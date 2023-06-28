@@ -37,13 +37,38 @@ export class CrudUserLinksComponent {
     }),
   });
 
+  ngOnInit(): void {
+    if (this.userData.links) {
+      this.linksForm.setValue({
+        websiteGroup: {
+          urlControl: this.userData.links.website.url!,
+          placeholderControl: this.userData.links.website.placeholder!,
+        },
+        githubGroup: {
+          urlControl: this.userData.links.github.url!,
+          placeholderControl: this.userData.links.github.placeholder!,
+        },
+        linkedinGroup: {
+          urlControl: this.userData.links.linkedin.url!,
+          placeholderControl: this.userData.links.linkedin.placeholder!,
+        },
+        instagramGroup: {
+          urlControl: this.userData.links.instagram.url!,
+          placeholderControl: this.userData.links.instagram.placeholder!,
+        },
+        youtubeGroup: {
+          urlControl: this.userData.links.youtube.url!,
+          placeholderControl: this.userData.links.youtube.placeholder!,
+        },
+      });
+    }
+  }
+
   fireCloseUserLinksCrudEvent(): void {
     this.closeUserLinksCrudEvent.emit();
   }
 
   saveLinks(): void {
-    console.log(this.linksForm.value);
-
     if (this.linksForm.valid) {
       const {
         websiteGroup,
@@ -56,27 +81,26 @@ export class CrudUserLinksComponent {
       const links = {
         website: {
           url: websiteGroup?.urlControl!,
-          placeholder: websiteGroup?.urlControl!,
+          placeholder: websiteGroup?.placeholderControl!,
         },
         github: {
           url: githubGroup?.urlControl!,
-          placeholder: githubGroup?.urlControl!,
+          placeholder: githubGroup?.placeholderControl!,
         },
         linkedin: {
           url: linkedinGroup?.urlControl!,
-          placeholder: linkedinGroup?.urlControl!,
+          placeholder: linkedinGroup?.placeholderControl!,
         },
         instagram: {
           url: instagramGroup?.urlControl!,
-          placeholder: instagramGroup?.urlControl!,
+          placeholder: instagramGroup?.placeholderControl!,
         },
         youtube: {
           url: youtubeGroup?.urlControl!,
-          placeholder: youtubeGroup?.urlControl!,
+          placeholder: youtubeGroup?.placeholderControl!,
         },
       };
 
-      // save links
       this.authService.updateCurrentUser({
         ...this.userData,
         links,

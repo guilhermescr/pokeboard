@@ -125,6 +125,13 @@
       </div>
     </section>
 
-    <button class="save-links-button" (click)="saveLinks()">Save Links</button>
+    <button
+      type="button"
+      class="save-links-button"
+      [class.disabled]="linksForm.invalid"
+      (click)="linksForm.valid ? saveLinks() : null"
+    >
+      Save Links
+    </button>
   </form>
 </section>

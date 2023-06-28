@@ -26,6 +26,7 @@
     border-radius: 7px;
     box-shadow: 0 0 5px #00000088 inset;
     max-width: 500px;
+    overflow-y: auto;
     padding: 20px;
     position: relative;
 
@@ -64,8 +65,16 @@
           "website-field github-field"
           "linkedin-field instagram-field"
           "youtube-field youtube-field";
+        // grid-template-rows: repeat(auto-fit, 1fr);
 
         .link-field {
+          @include mixins.flex-center(column);
+          justify-content: space-between;
+
+          > * {
+            width: 100%;
+          }
+
           label {
             color: #fff;
             display: block;
@@ -126,16 +135,22 @@
         margin-top: 20px;
         padding: 15px 25px;
 
-        &:hover {
+        &:not(.disabled):hover {
           background-color: #302c2c;
         }
 
-        &:active {
+        &:not(.disabled):active {
           background-color: #201f1f;
         }
 
-        &:focus {
+        &:not(.disabled):focus {
           @include mixins.focusForTabIndex(#646262);
+        }
+
+        &.disabled {
+          background-color: #ccc;
+          color: #aaa;
+          cursor: not-allowed;
         }
       }
     }
@@ -145,15 +160,18 @@
 @media (max-width: 768px) {
   :host {
     .crud-user-links {
+      max-height: 570px;
+      max-width: auto;
+      width: 90%;
+
       .links-form {
         .link-fields {
-          // gap: 15px;
-          // grid-template-areas:
-          //   "website-field"
-          //   "github-field"
-          //   "linkedin-field"
-          //   "instagram-field"
-          //   "youtube-field";
+          grid-template-areas:
+            "website-field"
+            "github-field"
+            "linkedin-field"
+            "instagram-field"
+            "youtube-field";
         }
       }
     }
