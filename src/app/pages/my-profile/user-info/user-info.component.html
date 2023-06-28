@@ -1,9 +1,23 @@
 <section class="user">
-  <button class="delete-account-button" (click)="openConfirmPopup()">
+  <button
+    class="delete-account-button rounded-circle-button"
+    (click)="openDeleteAccountPopup()"
+  >
     <mat-icon
       aria-hidden="false"
       aria-label="Delete Icon"
       fontIcon="delete"
+    ></mat-icon>
+  </button>
+
+  <button
+    class="logout-button rounded-circle-button"
+    (click)="openLogoutPopup()"
+  >
+    <mat-icon
+      aria-hidden="false"
+      aria-label="Logout Icon"
+      fontIcon="logout"
     ></mat-icon>
   </button>
 
@@ -39,7 +53,7 @@
 
 <app-confirm-popup
   *ngIf="isPopupOpen"
-  [popupMessage]="deleteMessage"
-  [yesMethod]="'delete'"
+  [popupMessage]="chosenPopup.message"
+  [yesMethod]="chosenPopup.method"
   (closeConfirmPopupEvent)="closeConfirmPopup()"
 ></app-confirm-popup>

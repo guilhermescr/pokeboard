@@ -13,7 +13,12 @@ export class UserInfoComponent {
   serenaProfilePicture: string = '../../../assets/img/serena.webp';
   currentProfilePicture: string = 'Ash';
   isPopupOpen: boolean = false;
+  chosenPopup = {
+    message: '',
+    method: '',
+  };
   deleteMessage: string = 'to delete your account permanently';
+  logoutMessage: string = 'to logout right now';
 
   constructor(private authService: AuthService) {}
 
@@ -37,5 +42,19 @@ export class UserInfoComponent {
 
   closeConfirmPopup(): void {
     this.isPopupOpen = false;
+  }
+
+  openDeleteAccountPopup(): void {
+    this.chosenPopup.message = this.deleteMessage;
+    this.chosenPopup.method = 'delete';
+
+    this.openConfirmPopup();
+  }
+
+  openLogoutPopup(): void {
+    this.chosenPopup.message = this.logoutMessage;
+    this.chosenPopup.method = 'logout';
+
+    this.openConfirmPopup();
   }
 }
