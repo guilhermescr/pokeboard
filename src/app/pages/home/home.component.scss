@@ -209,7 +209,7 @@
 
             div {
               @include mixins.flex-center;
-              gap: 1rem;
+              gap: 0.7rem;
 
               span {
                 font-weight: 500;

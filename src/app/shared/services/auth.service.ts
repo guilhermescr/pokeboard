@@ -3,30 +3,25 @@ import { User } from '../models/user.model';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
 import { v4 as uuidv4 } from 'uuid';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  private adminUserId: string = uuidv4();
   private currentUserSubject: BehaviorSubject<User | null> =
-    new BehaviorSubject<User | null>({
-      id: '1',
-      name: 'guilhermescr',
-      currentProfilePicture: 'Ash',
-      email: 'devguiga@gmail.com',
-      password: 'omelhorem2023',
-      favoritePokemonList: [],
-    });
+    new BehaviorSubject<User | null>(null);
   public currentUser: Observable<User | null> =
     this.currentUserSubject.asObservable();
 
   users: User[] = [
     {
-      id: '1',
-      name: 'guilhermescr',
+      id: this.adminUserId,
+      name: 'admin',
       currentProfilePicture: 'Ash',
-      email: 'devguiga@gmail.com',
-      password: 'omelhorem2023',
+      email: 'admin@admin.com',
+      password: 'admin2023',
       favoritePokemonList: [],
     },
     {
@@ -47,7 +42,7 @@ export class AuthService {
     },
   ];
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private toastr: ToastrService) {
     this.currentUser.subscribe((currentUserData) => {
       if (currentUserData) {
         this.updateUsers(currentUserData);
@@ -76,7 +71,7 @@ export class AuthService {
       this.currentUserSubject.next(userData);
       this.router.navigateByUrl('/board');
 
-      // show green popup alerting user that their account is fine and welcome them.
+      this.toastr.success('Welcome to the PokéBoard!', "You're in!");
     }
   }
 
@@ -91,6 +86,7 @@ export class AuthService {
     );
 
     this.logOut();
+    this.toastr.success('Account deleted permanently', 'Account deleted');
   }
 
   isNewDataAvailable(isName: boolean, newData: string): boolean {

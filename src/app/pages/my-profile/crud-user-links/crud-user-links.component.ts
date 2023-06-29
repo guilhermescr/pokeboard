@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/shared/models/user.model';
 import { AuthService } from 'src/app/shared/services/auth.service';
 
@@ -12,7 +13,11 @@ export class CrudUserLinksComponent {
   @Input() userData!: User;
   @Output() closeUserLinksCrudEvent = new EventEmitter();
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {}
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private toastr: ToastrService
+  ) {}
 
   linksForm = this.fb.group({
     websiteGroup: this.fb.group({
@@ -106,6 +111,8 @@ export class CrudUserLinksComponent {
         links,
       });
       this.fireCloseUserLinksCrudEvent();
+
+      this.toastr.success('Your links were saved!', 'Links Alert');
     }
   }
 }

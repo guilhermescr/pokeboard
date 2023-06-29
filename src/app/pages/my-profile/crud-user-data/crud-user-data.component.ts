@@ -1,5 +1,6 @@
 import { Component, Output, Input, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/shared/models/user.model';
 import { AuthService } from 'src/app/shared/services/auth.service';
 
@@ -17,7 +18,11 @@ export class CrudUserDataComponent {
     email: true,
   };
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {}
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private toastr: ToastrService
+  ) {}
 
   profileForm = this.fb.group({
     name: ['', Validators.required],
@@ -82,7 +87,11 @@ export class CrudUserDataComponent {
       links: this.userData.links,
     };
     this.authService.updateCurrentUser(updatedUser);
-
     this.fireCloseUserDataCrudEvent();
+
+    this.toastr.success(
+      'Your profile was updated with no issues :)',
+      'Profile Alert'
+    );
   }
 }
