@@ -1,3 +1,5 @@
-<!-- show side-bar here if user is logged in -->
-<app-side-bar *ngIf="isUserAuthenticated"></app-side-bar>
+<app-side-bar
+  *ngIf="isUserAuthenticated"
+  [currentRoute]="currentRoute"
+></app-side-bar>
 <router-outlet></router-outlet>

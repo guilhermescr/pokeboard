@@ -10,6 +10,7 @@ import { Pokemon } from '../models/pokemon.model';
 export class PokeapiService {
   private pokeApiUrl = 'https://pokeapi.co/api/v2/pokemon';
   private pokemonSpeciesUrl = 'https://pokeapi.co/api/v2/pokemon-species';
+  private pokemonItemUrl = 'https://pokeapi.co/api/v2/item';
   maxAmountOfRequests: number = 1008;
 
   constructor(private http: HttpClient, private authService: AuthService) {}
@@ -20,6 +21,10 @@ export class PokeapiService {
 
   getPokemonDescription(pokemonIdentifier: string): Observable<any> {
     return this.http.get(`${this.pokemonSpeciesUrl}/${pokemonIdentifier}`);
+  }
+
+  getPokemonItem(itemId: string): Observable<any> {
+    return this.http.get(`${this.pokemonItemUrl}/${itemId}`);
   }
 
   isPokemonInFavoriteList(pokemon: Pokemon): boolean {

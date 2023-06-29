@@ -1,2 +1,84 @@
-<h2>Dashboard</h2>
-<p>Welcome, {{ username }}.</p>
+<header>
+  <h2>PokéBoard</h2>
+
+  <div class="user-bar" (click)="navigateToMyProfileRoute()">
+    <div class="profile-picture-container">
+      <img src="{{ profilePicture }}" alt="{{ user.name }}'s Profile Picture" />
+    </div>
+
+    <p>{{ user.name }}</p>
+  </div>
+</header>
+
+<section class="pokeboard">
+  <section class="your-pokemon-team">
+    <h3>Your Team</h3>
+
+    <div class="pokemon-team">
+      <div class="pokemon" *ngFor="let pokemon of pokemonTeam">
+        <h4>{{ pokemon.name }}</h4>
+        <span class="pokemon__types">
+          <span
+            *ngFor="let type of pokemon.types"
+            class="{{ type }}--background"
+            >{{ type | titlecase }}</span
+          >
+        </span>
+
+        <img src="{{ pokemon.imgSrc }}" alt="Pokémon: {{ pokemon.name }}" />
+
+        <div class="pokemon__stats">
+          <p>
+            HP <span>{{ pokemon.stats.hp }}</span>
+          </p>
+          <p>
+            Attack <span>{{ pokemon.stats.attack }}</span>
+          </p>
+          <p>
+            Defense <span>{{ pokemon.stats.defense }}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <aside>
+    <section class="your-items">
+      <h3>Your Items</h3>
+
+      <div class="items">
+        <div class="item" *ngFor="let item of pokemonItems">
+          <h4>{{ item.name }}</h4>
+
+          <div>
+            <span>X {{ item.quantity }}</span>
+            <img src="{{ item.imgSrc }}" alt="{{ item.name }} Item" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="nearby-pokemons-container">
+      <h3>Nearby Pokémons</h3>
+
+      <div class="nearby-pokemons">
+        <div
+          class="nearby-pokemon"
+          *ngFor="let nearbyPokemon of nearbyPokemons"
+        >
+          <div>
+            <h4>{{ nearbyPokemon.name }}</h4>
+            <span>{{ nearbyPokemon.distance }}m away</span>
+          </div>
+
+          <div>
+            <img
+              src="{{ nearbyPokemon.imgSrc }}"
+              alt="Nearby Pokémon: {{ nearbyPokemon.name }}"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  </aside>
+</section>

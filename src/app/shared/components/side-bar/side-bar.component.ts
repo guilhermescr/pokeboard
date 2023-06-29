@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -8,6 +8,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class SideBarComponent {
   isSideBarOpen: boolean = false;
+  @Input() currentRoute!: string;
 
   constructor(private authService: AuthService) {}
 

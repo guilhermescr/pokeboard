@@ -118,6 +118,7 @@
     position: absolute;
     top: 15px;
     width: 45px;
+    z-index: 2;
 
     &:hover {
       background-color: #8d0308;
@@ -129,6 +130,11 @@
 
     &:focus {
       @include mixins.focusForTabIndex(red);
+    }
+
+    &.adjusted-position {
+      left: 20px;
+      top: 25px;
     }
 
     .open-side-bar-burger-button__bar {

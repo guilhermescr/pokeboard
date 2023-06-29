@@ -112,6 +112,7 @@
   <button
     (click)="openSideBar()"
     class="open-side-bar-burger-button"
+    [class.adjusted-position]="currentRoute === '/board'"
     tabindex="1"
   >
     <span class="open-side-bar-burger-button__bar"></span>
