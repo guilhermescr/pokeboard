@@ -134,9 +134,6 @@
         .nearby-pokemons {
           display: flex;
           flex-wrap: wrap;
-          // display: grid;
-          // grid-template-columns: repeat(2, 1fr);
-          // grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
           gap: 5px;
           width: 100%;
         }
@@ -171,6 +168,13 @@
         .your-items {
           .items {
             grid-template-columns: 1fr;
+          }
+        }
+
+        .nearby-pokemons-container {
+          .nearby-pokemons {
+            flex-direction: column;
+            flex-wrap: nowrap;
           }
         }
       }
