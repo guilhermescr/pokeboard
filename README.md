@@ -25,9 +25,9 @@ The PokéBoard is a web application built with Angular that provides a user-frie
 - **My Profile:** Users can view and update their profile information.
 - **Angular Material Integration:** The dashboard leverages Angular Material components and styles to ensure a consistent and responsive user interface. Components like buttons, cards, form-fields, and icons are utilized to provide a modern and visually appealing design.
 
-1. **Custom Pipes:** The project implements custom pipes to extend Angular's functionality. Custom pipes provide transformations, such as capitalizing the first letter of each word.
+3. **Custom Pipes:** The project implements custom pipes to extend Angular's functionality. Custom pipes provide transformations, such as capitalizing the first letter of each word.
 
-2. **API Integration:** The Pokédex Dashboard interacts with the PokéAPI to fetch Pokémon data dynamically. The application uses HTTP requests to retrieve information such as Pokémon details, abilities, and characteristics, providing a comprehensive view of each Pokémon.
+4. **API Integration:** The Pokédex Dashboard interacts with the PokéAPI to fetch Pokémon data dynamically. The application uses HTTP requests to retrieve information such as Pokémon details, abilities, and characteristics, providing a comprehensive view of each Pokémon.
 
 ## Setup and Usage
 
