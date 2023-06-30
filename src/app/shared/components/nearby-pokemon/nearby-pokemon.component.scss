@@ -1,0 +1,33 @@
+@use "../../../../assets/utilities/mixins";
+
+:host {
+  width: 100%;
+
+  .nearby-pokemon {
+    background-color: #fff;
+    box-shadow: 0 0 5px #708090 inset;
+    border-radius: 7px;
+    @include mixins.flex-center;
+    flex-grow: 1;
+    justify-content: space-between;
+    padding: 1rem;
+    width: 100%;
+
+    div {
+      text-transform: capitalize;
+
+      &:nth-child(1) {
+        width: 65%;
+      }
+
+      &:nth-child(2) {
+        @include mixins.flex-center;
+        width: 35%;
+      }
+
+      img {
+        max-width: 80px;
+      }
+    }
+  }
+}

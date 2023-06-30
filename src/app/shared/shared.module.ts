@@ -17,6 +17,9 @@ import { ConfirmPopupComponent } from './components/confirm-popup/confirm-popup.
 import { CapitalizeStringPipe } from './pipes/capitalize-string.pipe';
 import { AuthPasswordInputComponent } from './components/auth-password-input/auth-password-input.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PokemonForTeamComponent } from './components/pokemon-for-team/pokemon-for-team.component';
+import { NearbyPokemonComponent } from './components/nearby-pokemon/nearby-pokemon.component';
+import { ItemComponent } from './components/item/item.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +34,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ConfirmPopupComponent,
     CapitalizeStringPipe,
     AuthPasswordInputComponent,
+    PokemonForTeamComponent,
+    NearbyPokemonComponent,
+    ItemComponent,
   ],
   imports: [
     CommonModule,
@@ -52,6 +58,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SideBarComponent,
     PokemonCardsComponent,
     PokemonCardComponent,
+    PokemonForTeamComponent,
+    NearbyPokemonComponent,
+    ItemComponent,
     CardModalComponent,
     WrapperComponent,
     LoaderComponent,

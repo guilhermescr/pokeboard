@@ -1,0 +1,27 @@
+<div class="pokemon">
+  <h4>{{ pokemonForTeam.name }}</h4>
+  <span class="pokemon__types">
+    <span
+      *ngFor="let type of pokemonForTeam.types"
+      class="{{ type }}--background"
+      >{{ type | capitalizeString }}</span
+    >
+  </span>
+
+  <img
+    src="{{ pokemonForTeam.imgSrc }}"
+    alt="Pokémon: {{ pokemonForTeam.name }}"
+  />
+
+  <div class="pokemon__stats">
+    <p>
+      HP <span>{{ pokemonForTeam.stats.hp }}</span>
+    </p>
+    <p>
+      Attack <span>{{ pokemonForTeam.stats.attack }}</span>
+    </p>
+    <p>
+      Defense <span>{{ pokemonForTeam.stats.defense }}</span>
+    </p>
+  </div>
+</div>

@@ -1,0 +1,99 @@
+@use "../../../../assets/utilities/mixins";
+@use "../pokemon-card/types";
+
+:host {
+  max-height: 287px;
+  max-width: 270px;
+
+  .pokemon {
+    background-color: #fff;
+    border: 0.3rem solid transparent;
+    border-radius: 8px;
+    box-shadow: 0 0 5px #000000aa inset;
+    cursor: pointer;
+    @include mixins.flex-center(column);
+    gap: 10px;
+    height: 100%;
+    justify-content: space-between;
+    padding: 1.4rem 1rem;
+    padding-bottom: 0.2rem;
+    position: relative;
+    transition: all 0.2s ease;
+    user-select: none;
+    width: 100%;
+
+    &:hover {
+      background-color: #eee;
+      transform: scale(0.95);
+    }
+
+    h4 {
+      font-size: 1.22rem;
+      font-weight: 600;
+      text-transform: capitalize;
+    }
+
+    .pokemon__types {
+      @include mixins.flex-center;
+      gap: 7px;
+
+      span {
+        border-radius: 20px;
+        color: #fff;
+        font-size: 0.85rem;
+        font-weight: 600;
+        padding: 5px 15px;
+      }
+    }
+
+    img {
+      max-width: 80px;
+    }
+
+    .pokemon__stats {
+      @include mixins.flex-center;
+      justify-content: space-between;
+      margin: 10px;
+      width: 100%;
+
+      p {
+        color: #fff;
+        @include mixins.flex-center(column);
+        font-size: 0.9rem;
+        justify-content: space-between;
+
+        &:nth-child(1) {
+          color: #1ac01a;
+          font-weight: 600;
+          width: 22%;
+        }
+
+        &:nth-child(2) {
+          color: #9d171b;
+          font-weight: 600;
+        }
+
+        &:nth-child(3) {
+          color: #708090;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  :host {
+    .pokemon {
+      padding: 1.4rem 2.5rem;
+    }
+  }
+}
+
+@media (max-width: 425px) {
+  :host {
+    .pokemon {
+      max-width: 250px;
+    }
+  }
+}

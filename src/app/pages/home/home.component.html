@@ -15,30 +15,10 @@
     <h3>Your Team</h3>
 
     <div class="pokemon-team">
-      <div class="pokemon" *ngFor="let pokemon of pokemonTeam">
-        <h4>{{ pokemon.name }}</h4>
-        <span class="pokemon__types">
-          <span
-            *ngFor="let type of pokemon.types"
-            class="{{ type }}--background"
-            >{{ type | capitalizeString }}</span
-          >
-        </span>
-
-        <img src="{{ pokemon.imgSrc }}" alt="Pokémon: {{ pokemon.name }}" />
-
-        <div class="pokemon__stats">
-          <p>
-            HP <span>{{ pokemon.stats.hp }}</span>
-          </p>
-          <p>
-            Attack <span>{{ pokemon.stats.attack }}</span>
-          </p>
-          <p>
-            Defense <span>{{ pokemon.stats.defense }}</span>
-          </p>
-        </div>
-      </div>
+      <app-pokemon-for-team
+        *ngFor="let pokemon of pokemonTeam"
+        [pokemonForTeam]="pokemon"
+      ></app-pokemon-for-team>
     </div>
   </section>
 
@@ -47,14 +27,7 @@
       <h3>Your Items</h3>
 
       <div class="items">
-        <div class="item" *ngFor="let item of pokemonItems">
-          <h4>{{ item.name }}</h4>
-
-          <div>
-            <span>X {{ item.quantity }}</span>
-            <img src="{{ item.imgSrc }}" alt="{{ item.name }} Item" />
-          </div>
-        </div>
+        <app-item *ngFor="let item of pokemonItems" [item]="item"></app-item>
       </div>
     </section>
 
@@ -62,22 +35,10 @@
       <h3>Nearby Pokémons</h3>
 
       <div class="nearby-pokemons">
-        <div
-          class="nearby-pokemon"
+        <app-nearby-pokemon
           *ngFor="let nearbyPokemon of nearbyPokemons"
-        >
-          <div>
-            <h4>{{ nearbyPokemon.name }}</h4>
-            <span>{{ nearbyPokemon.distance }}m away</span>
-          </div>
-
-          <div>
-            <img
-              src="{{ nearbyPokemon.imgSrc }}"
-              alt="Nearby Pokémon: {{ nearbyPokemon.name }}"
-            />
-          </div>
-        </div>
+          [pokemon]="nearbyPokemon"
+        ></app-nearby-pokemon>
       </div>
     </section>
   </aside>
