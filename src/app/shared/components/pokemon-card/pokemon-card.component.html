@@ -1,25 +1,25 @@
 <mat-card class="pokemon-card" tabindex="0" (click)="openCardModal($event)">
   <mat-card-header [ngStyle]="{ padding: 0 }">
     <mat-card-title-group>
-      <mat-card-title>{{ pokemon.name | titlecase }}</mat-card-title>
+      <mat-card-title>{{ pokemon.name | capitalizeString }}</mat-card-title>
 
       <mat-card-subtitle
         *ngIf="pokemon.types.length === 1; else doubleType"
         class="types"
       >
         <span [ngClass]="pokemon.types[0]">{{
-          pokemon.types[0] | titlecase
+          pokemon.types[0] | capitalizeString
         }}</span>
       </mat-card-subtitle>
 
       <ng-template #doubleType>
         <mat-card-subtitle class="types">
           <span [ngClass]="pokemon.types[0]">{{
-            pokemon.types[0] | titlecase
+            pokemon.types[0] | capitalizeString
           }}</span>
           -
           <span [ngClass]="pokemon.types[1]">{{
-            pokemon.types[1] | titlecase
+            pokemon.types[1] | capitalizeString
           }}</span>
         </mat-card-subtitle>
       </ng-template>
@@ -47,7 +47,7 @@
     <img
       [ngClass]="'pokemon-image'"
       src="{{ pokemon.imgSrc }}"
-      alt="Pokémon {{ pokemon.name | titlecase }}"
+      alt="Pokémon {{ pokemon.name | capitalizeString }}"
     />
   </mat-card-content>
 

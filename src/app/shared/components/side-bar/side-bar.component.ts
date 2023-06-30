@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-side-bar',
@@ -10,7 +11,7 @@ export class SideBarComponent {
   isSideBarOpen: boolean = false;
   @Input() currentRoute!: string;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   openSideBar(): void {
     this.isSideBarOpen = true;
@@ -22,5 +23,6 @@ export class SideBarComponent {
 
   logout(): void {
     this.authService.logOut();
+    this.router.navigateByUrl('/signin');
   }
 }

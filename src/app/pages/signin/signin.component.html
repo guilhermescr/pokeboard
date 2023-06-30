@@ -75,31 +75,14 @@
           Password must have between 8 and 16 characters</mat-hint
         >
 
-        <div class="input-field">
-          <mat-icon
-            class="input-icon"
-            aria-hidden="false"
-            aria-label="Lock Icon"
-            fontIcon="lock"
-          ></mat-icon>
-
-          <input
-            matInput
-            type="password"
-            [class.error]="
-              signInForm.controls.password.invalid &&
-              (signInForm.controls.password.dirty ||
-                signInForm.controls.password.touched)
-            "
-            id="password"
-            name="password"
-            formControlName="password"
-            placeholder="Password..."
-            autocomplete="off"
-            required
-            minlength="8"
-          />
-        </div>
+        <app-auth-password-input
+          [authFormControl]="signInFormControl"
+          [errorValidation]="
+            signInForm.controls.password.invalid &&
+            (signInForm.controls.password.dirty ||
+              signInForm.controls.password.touched)
+          "
+        ></app-auth-password-input>
       </div>
     </mat-card-content>
 

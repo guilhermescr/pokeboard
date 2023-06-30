@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { AuthService } from './shared/services/auth.service';
 import { NavigationEnd, Router } from '@angular/router';
+import { AuthService } from './shared/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -8,16 +8,17 @@ import { NavigationEnd, Router } from '@angular/router';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  isUserAuthenticated: boolean = true;
+  isUserAuthenticated: boolean =
+    this.authService.fetchCurrentUserSubject() !== null;
   currentRoute: string = '/board';
 
-  constructor(private authService: AuthService, private router: Router) {}
-
-  ngOnInit(): void {
+  constructor(private authService: AuthService, private router: Router) {
     this.authService.currentUser.subscribe((currentUserData) => {
       this.isUserAuthenticated = currentUserData !== null;
     });
+  }
 
+  ngOnInit(): void {
     this.router.events.subscribe((routerChange) => {
       if (routerChange instanceof NavigationEnd) {
         this.currentRoute = routerChange.url;

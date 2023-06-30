@@ -2,45 +2,33 @@ import { Injectable } from '@angular/core';
 import { User } from '../models/user.model';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
-import { v4 as uuidv4 } from 'uuid';
 import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private adminUserId: string = uuidv4();
   private currentUserSubject: BehaviorSubject<User | null> =
-    new BehaviorSubject<User | null>(null);
+    new BehaviorSubject<User | null>(this.fetchCurrentUserSubject());
   public currentUser: Observable<User | null> =
     this.currentUserSubject.asObservable();
 
-  users: User[] = [
-    {
-      id: this.adminUserId,
-      name: 'admin',
-      currentProfilePicture: 'Ash',
-      email: 'admin@admin.com',
-      password: 'admin2023',
-      favoritePokemonList: [],
-    },
-    {
-      id: uuidv4(),
-      name: 'Carlos Gabriel',
-      currentProfilePicture: 'Ash',
-      email: 'cacagabi@gmail.com',
-      password: 'cacagabi2023',
-      favoritePokemonList: [],
-    },
-    {
-      id: uuidv4(),
-      name: 'Treinadora Do Mato',
-      currentProfilePicture: 'Serena',
-      email: 'treinadoradomato@gmail.com',
-      password: 'treinadora2023',
-      favoritePokemonList: [],
-    },
-  ];
+  users: User[] = this.fetchUsers();
+
+  /*
+  Sample User:
+  import { v4 as uuidv4 } from 'uuid';
+
+  private adminUserId: string = uuidv4();
+  {
+    id: this.adminUserId,
+    name: 'admin',
+    currentProfilePicture: 'Ash',
+    email: 'admin@admin.com',
+    password: 'admin2023',
+    favoritePokemonList: [],
+  },
+  */
 
   constructor(private router: Router, private toastr: ToastrService) {
     this.currentUser.subscribe((currentUserData) => {
@@ -52,15 +40,18 @@ export class AuthService {
 
   registerNewUser(user: User): void {
     this.users.push(user);
+    localStorage.setItem('users', JSON.stringify(this.users));
   }
 
   updateUsers(updatedUser: User): void {
     this.users = this.users.map((user) =>
       user.id === updatedUser.id ? updatedUser : user
     );
+    localStorage.setItem('users', JSON.stringify(this.users));
   }
 
   updateCurrentUser(updatedCurrentUser: User): void {
+    localStorage.setItem('currentUser', JSON.stringify(updatedCurrentUser));
     this.currentUserSubject.next(updatedCurrentUser);
   }
 
@@ -68,6 +59,7 @@ export class AuthService {
     const userData = this.getAllDataAboutUser(email);
 
     if (userData) {
+      localStorage.setItem('currentUser', JSON.stringify(userData));
       this.currentUserSubject.next(userData);
       this.router.navigateByUrl('/board');
 
@@ -76,17 +68,19 @@ export class AuthService {
   }
 
   logOut(): void {
+    localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
-    this.router.navigateByUrl('/signin');
   }
 
   deleteAccount(): void {
     this.users = this.users.filter(
       (user) => user.id !== this.currentUserSubject.value?.id
     );
+    localStorage.setItem('users', JSON.stringify(this.users));
 
     this.logOut();
-    this.toastr.success('Account deleted permanently', 'Account deleted');
+    this.router.navigateByUrl('/signin');
+    this.toastr.success('Account deleted permanently!', 'Account deleted');
   }
 
   isNewDataAvailable(isName: boolean, newData: string): boolean {
@@ -112,19 +106,28 @@ export class AuthService {
     }
   }
 
-  isNewAccount(user: User): boolean {
-    if (user.name) {
-      return (
-        this.users.find(
-          ($user) => $user.name === user.name && $user.email === user.email
-        ) === undefined
-      );
-    } else {
+  isNewAccount(user: User, checkOnlyEmail: boolean): boolean {
+    if (checkOnlyEmail) {
       return (
         this.users.find(($user) => $user.email === user.email) === undefined
       );
+    } else {
+      return (
+        this.users.find(
+          ($user) => $user.name === user.name || $user.email === user.email
+        ) === undefined
+      );
     }
     // isUndefined ? 'It is a new account' : 'It is not';
+  }
+
+  areEmailAndPasswordCorrect(user: User): boolean {
+    return (
+      this.users.find(
+        ($user) =>
+          $user.email === user.email && $user.password === user.password
+      ) !== undefined
+    );
   }
 
   isLoggedIn(): boolean {
@@ -139,5 +142,23 @@ export class AuthService {
     const allData = this.users.find((user) => user.email === userEmail);
 
     return allData ? allData : null;
+  }
+
+  fetchUsers(): User[] {
+    const users = localStorage.getItem('users');
+
+    if (users) {
+      return JSON.parse(users);
+    }
+    return [];
+  }
+
+  fetchCurrentUserSubject(): User | null {
+    const currentUser = localStorage.getItem('currentUser');
+
+    if (currentUser) {
+      return JSON.parse(currentUser);
+    }
+    return null;
   }
 }

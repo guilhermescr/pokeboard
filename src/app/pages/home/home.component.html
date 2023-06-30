@@ -21,7 +21,7 @@
           <span
             *ngFor="let type of pokemon.types"
             class="{{ type }}--background"
-            >{{ type | titlecase }}</span
+            >{{ type | capitalizeString }}</span
           >
         </span>
 

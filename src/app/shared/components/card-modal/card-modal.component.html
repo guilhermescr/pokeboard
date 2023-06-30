@@ -9,7 +9,7 @@
       (click)="fireCloseModalEvent()"
     ></mat-icon>
 
-    <h2>{{ pokemonData.name | titlecase }}</h2>
+    <h2>{{ pokemonData.name | capitalizeString }}</h2>
 
     <span id="pokemon-id">{{ formatPokemonId(pokemonData.id) }}</span>
   </header>
@@ -17,7 +17,7 @@
   <img
     class="pokemon-image"
     src="{{ pokemonData.imgSrc }}"
-    alt="Image of the Pokémon {{ pokemonData.name | titlecase }}"
+    alt="Image of the Pokémon {{ pokemonData.name | capitalizeString }}"
   />
 
   <article class="pokemon-content">
@@ -26,7 +26,7 @@
         *ngFor="let type of pokemonData.types"
         class="pokemon-types__type {{ type }}--background"
       >
-        {{ type | titlecase }}
+        {{ type | capitalizeString }}
       </span>
     </div>
 
@@ -78,7 +78,7 @@
         <div class="abilities-data">
           <p>
             <span *ngFor="let ability of pokemonData.abilities">{{
-              ability | titlecase
+              ability | capitalizeString
             }}</span>
           </p>
 

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { User } from 'src/app/shared/models/user.model';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { v4 as uuidv4 } from 'uuid';
@@ -10,9 +11,14 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrls: ['./signup.component.scss'],
 })
 export class SignupComponent {
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {
     if (this.authService.getCurrentUser()) {
       this.authService.logOut();
+      this.router.navigateByUrl('/signup');
     }
   }
 
@@ -30,6 +36,7 @@ export class SignupComponent {
       [Validators.required, Validators.minLength(8), Validators.maxLength(16)],
     ],
   });
+  signUpFormControl = this.signUpForm.get('password');
   accountDoesExist: boolean = false;
 
   ngOnInit(): void {
@@ -54,7 +61,7 @@ export class SignupComponent {
         favoritePokemonList: [],
       };
 
-      if (this.authService.isNewAccount(newUser)) {
+      if (this.authService.isNewAccount(newUser, false)) {
         this.authService.registerNewUser(newUser);
         this.authService.logIn(newUser);
       } else {

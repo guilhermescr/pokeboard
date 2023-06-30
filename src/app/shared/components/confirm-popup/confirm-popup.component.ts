@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output, Input } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-confirm-popup',
@@ -12,7 +13,7 @@ export class ConfirmPopupComponent {
   @Input() popupMessage!: string;
   @Input() yesMethod!: string;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   callYesMethod(): void {
     switch (this.yesMethod) {
@@ -21,6 +22,7 @@ export class ConfirmPopupComponent {
         break;
       case 'logout':
         this.authService.logOut();
+        this.router.navigateByUrl('/signin');
         break;
       case 'unmarkPokemonAsFavorite':
         this.isUnmarkFavoritePokemonAllowedEvent.emit();

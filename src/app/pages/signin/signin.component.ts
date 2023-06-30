@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { User } from 'src/app/shared/models/user.model';
 import { AuthService } from 'src/app/shared/services/auth.service';
 
@@ -9,9 +10,14 @@ import { AuthService } from 'src/app/shared/services/auth.service';
   styleUrls: ['./signin.component.scss'],
 })
 export class SigninComponent {
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {
     if (this.authService.getCurrentUser()) {
       this.authService.logOut();
+      this.router.navigateByUrl('/signin');
     }
   }
 
@@ -28,6 +34,7 @@ export class SigninComponent {
       [Validators.required, Validators.minLength(8), Validators.maxLength(16)],
     ],
   });
+  signInFormControl = this.signInForm.get('password');
   accountNotFound: boolean = false;
 
   ngOnInit(): void {
@@ -48,7 +55,10 @@ export class SigninComponent {
         favoritePokemonList: [],
       };
 
-      if (!this.authService.isNewAccount(user)) {
+      if (
+        !this.authService.isNewAccount(user, true) &&
+        this.authService.areEmailAndPasswordCorrect(user)
+      ) {
         this.authService.logIn(user);
       } else {
         this.accountNotFound = true;
