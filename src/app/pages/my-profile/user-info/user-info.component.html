@@ -2,6 +2,8 @@
   <button
     class="delete-account-button rounded-circle-button"
     (click)="openDeleteAccountPopup()"
+    matTooltip="Delete Account"
+    aria-label="Button to delete your account"
   >
     <mat-icon
       aria-hidden="false"
@@ -13,6 +15,8 @@
   <button
     class="logout-button rounded-circle-button"
     (click)="openLogoutPopup()"
+    matTooltip="Logout"
+    aria-label="Button to log out your account"
   >
     <mat-icon
       aria-hidden="false"
@@ -26,6 +30,8 @@
       type="button"
       class="toggle-profile-picture-button"
       (click)="toggleCurrentProfilePicture()"
+      matTooltip="Switch Profile Picture"
+      aria-label="Button to change your profile picture between Ash (a boy) and Serena (a girl)"
     >
       <mat-icon
         aria-hidden="false"

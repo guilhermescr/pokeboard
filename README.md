@@ -21,7 +21,7 @@ The PokéBoard is a web application built with Angular that provides a user-frie
 - **Board:** This page of the application displays general information and highlights related to some Pokémon and Items.
 - **Pokémons:** Allows users to browse and search for Pokémon, fetching data from the PokéAPI. Users can view details, abilities, and characteristics of each Pokémon.
 - **Available Modes:**
-  Search By Name.
+  Search By Name/ID.
   Search By Quantity.
 - **Favorites:** Users can save their favorite Pokémon to easily access them later.
 - **My Profile:** Users can view and update their profile information.
@@ -29,15 +29,15 @@ The PokéBoard is a web application built with Angular that provides a user-frie
 
 3. **Custom Pipes:** The project implements custom pipes to extend Angular's functionality. Custom pipes provide transformations, such as capitalizing the first letter of each word.
 
-4. **API Integration:** The Pokédex Dashboard interacts with the PokéAPI to fetch Pokémon data dynamically. The application uses HTTP requests to retrieve information such as Pokémon details, abilities, and characteristics, providing a comprehensive view of each Pokémon.
+4. **API Integration:** The PokéBoard interacts with the PokéAPI to fetch Pokémon data dynamically. The application uses HTTP requests to retrieve information such as Pokémon details, abilities, and characteristics, providing a comprehensive view of each Pokémon.
 
 ## Setup and Usage
 
-To set up and run the Pokédex Dashboard locally, follow these steps:
+To set up and run the PokéBoard locally, follow these steps:
 
 1. Clone the repository or download the project files.
 
-2. Ensure you have Node.js and npm installed on your machine.
+2. Ensure you have Angular CLI, Node.js and npm installed on your machine.
 
 3. Navigate to the project directory using the command line.
 

@@ -28,13 +28,16 @@
     <button
       class="mark-pokemon-as-favorite-button"
       (click)="!isFavorite ? markPokemonAsFavorite() : openConfirmPopup()"
+      matTooltip="{{ !isFavorite ? 'Mark' : 'Unmark' }} Pokémon As Favorite"
+      [ariaLabel]="
+        'Button to' + !isFavorite ? 'mark' : 'unmark' + 'Pokémon as favorite'
+      "
     >
       <mat-icon
         #starIcon
         class="star-icon"
         aria-hidden="false"
         aria-label="Star Icon"
-        role="button"
         tabindex="0"
         fontIcon="{{ !isHover ? 'star_border' : 'star' }}"
         (mouseenter)="!isFavorite ? onMouseEnterStar() : null"

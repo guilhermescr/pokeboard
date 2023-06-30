@@ -37,6 +37,8 @@
               ? getPokemonByIdentifier()
               : handlePokemonQuantity()
           "
+          matTooltip="Search Pokémon"
+          aria-label="Button to search the Pokémon"
         >
           Search
           <mat-icon
@@ -56,6 +58,8 @@
           id="pokeSearchModes"
           [(ngModel)]="pokeSearchCurrentMode"
           (ngModelChange)="handleSelectChange()"
+          matTooltip="Switch Current Mode"
+          aria-label="Button to switch the current mode between Search By Name/ID and By Quantity"
         >
           <option>Search By Name Mode</option>
           <option>Quantity Mode</option>

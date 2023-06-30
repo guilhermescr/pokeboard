@@ -2,6 +2,8 @@
   <button
     class="close-user-links-crud-button"
     (click)="fireCloseUserLinksCrudEvent()"
+    matTooltip="Close Edit Profile Links Form"
+    aria-label="Button to close the edit profile links form"
   >
     <mat-icon
       aria-hidden="false"
@@ -130,6 +132,8 @@
       class="save-links-button"
       [class.disabled]="linksForm.invalid"
       (click)="linksForm.valid ? saveLinks() : null"
+      matTooltip="Save Links"
+      aria-label="Button to save user links"
     >
       Save Links
     </button>

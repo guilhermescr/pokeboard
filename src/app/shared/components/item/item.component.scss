@@ -7,14 +7,18 @@
     border-radius: 7px;
     @include mixins.flex-center;
     flex-grow: 1;
+    gap: 0.15rem;
+    height: 100%;
     justify-content: space-between;
-    margin-block: 2px;
     padding: 1rem;
     text-transform: capitalize;
 
     div {
       @include mixins.flex-center;
-      gap: 0.7rem;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      justify-content: space-between;
+      width: 100%;
 
       span {
         font-weight: 500;

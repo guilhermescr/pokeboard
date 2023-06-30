@@ -1,13 +1,17 @@
 <section class="card-modal {{ pokemonData.types[0] }}--background">
   <header>
-    <mat-icon
-      aria-hidden="false"
-      aria-label="Arrow Back Icon"
-      fontIcon="arrow_back"
-      role="button"
-      class="arrow-back-icon"
+    <button
+      matTooltip="Close Pokémon Card"
+      aria-label="Button to close the Pokémon Card"
       (click)="fireCloseModalEvent()"
-    ></mat-icon>
+    >
+      <mat-icon
+        aria-hidden="false"
+        aria-label="Arrow Back Icon"
+        fontIcon="arrow_back"
+        class="arrow-back-icon"
+      ></mat-icon>
+    </button>
 
     <h2>{{ pokemonData.name | capitalizeString }}</h2>
 

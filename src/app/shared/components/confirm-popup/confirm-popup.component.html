@@ -4,7 +4,19 @@
   <p>Are you <strong>sure</strong> you want {{ popupMessage }}?</p>
 
   <div class="confirm-popup__buttons">
-    <button (click)="callYesMethod()">Yes</button>
-    <button (click)="closeConfirmPopupEvent.emit()">No</button>
+    <button
+      (click)="callYesMethod()"
+      matTooltip="Confirm Action"
+      aria-label="Button to confirm the action"
+    >
+      Yes
+    </button>
+    <button
+      (click)="closeConfirmPopupEvent.emit()"
+      matTooltip="Cancel Action"
+      aria-label="Button to cancel the action"
+    >
+      No
+    </button>
   </div>
 </section>

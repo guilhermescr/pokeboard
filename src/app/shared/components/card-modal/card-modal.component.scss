@@ -44,10 +44,16 @@
       margin-bottom: 80px;
       padding: 10px 15px;
 
-      .arrow-back-icon {
+      button {
         align-self: center;
-        cursor: pointer;
-        font-size: 30px;
+        background-color: transparent;
+        border: none;
+        color: #fff;
+
+        .arrow-back-icon {
+          cursor: pointer;
+          font-size: 30px;
+        }
       }
 
       h2 {

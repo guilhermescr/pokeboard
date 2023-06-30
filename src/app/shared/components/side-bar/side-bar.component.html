@@ -1,5 +1,10 @@
 <nav class="side-bar" *ngIf="isSideBarOpen; else showBurgerButton">
-  <button (click)="closeSideBar()" class="side-bar__close-side-bar-button">
+  <button
+    (click)="closeSideBar()"
+    class="side-bar__close-side-bar-button"
+    matTooltip="Close SideBar"
+    aria-label="Button to close the sidebar menu"
+  >
     <svg
       fill="#fff"
       version="1.1"
@@ -114,6 +119,8 @@
     class="open-side-bar-burger-button"
     [class.adjusted-position]="currentRoute === '/board'"
     tabindex="1"
+    matTooltip="Open SideBar"
+    aria-label="Button to open the sidebar menu"
   >
     <span class="open-side-bar-burger-button__bar"></span>
     <span class="open-side-bar-burger-button__bar"></span>

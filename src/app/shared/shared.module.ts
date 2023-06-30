@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { MatIconModule } from '@angular/material/icon';
-import { PokemonCardComponent } from './components/pokemon-card/pokemon-card.component';
 import { MatCardModule } from '@angular/material/card';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
+import { SideBarComponent } from './components/side-bar/side-bar.component';
+import { PokemonCardComponent } from './components/pokemon-card/pokemon-card.component';
 import { PokemonCardsComponent } from './components/pokemon-cards/pokemon-cards.component';
 import { WrapperComponent } from './components/wrapper/wrapper.component';
 import { CardModalComponent } from './components/card-modal/card-modal.component';
@@ -45,6 +47,7 @@ import { ItemComponent } from './components/item/item.component';
     BrowserAnimationsModule,
     MatIconModule,
     MatCardModule,
+    MatTooltipModule,
     ReactiveFormsModule,
     FormsModule,
   ],
@@ -55,6 +58,7 @@ import { ItemComponent } from './components/item/item.component';
     BrowserAnimationsModule,
     MatIconModule,
     MatCardModule,
+    MatTooltipModule,
     SideBarComponent,
     PokemonCardsComponent,
     PokemonCardComponent,

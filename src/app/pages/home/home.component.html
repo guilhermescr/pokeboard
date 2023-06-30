@@ -1,7 +1,13 @@
 <header>
   <h2>PokéBoard</h2>
 
-  <div class="user-bar" (click)="navigateToMyProfileRoute()">
+  <div
+    class="user-bar"
+    (click)="navigateToMyProfileRoute()"
+    matTooltip="Go To My Profile"
+    aria-label="Button to navigate to My Profile Route"
+    role="button"
+  >
     <div class="profile-picture-container">
       <img src="{{ profilePicture }}" alt="{{ user.name }}'s Profile Picture" />
     </div>

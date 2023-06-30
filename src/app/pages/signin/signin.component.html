@@ -87,12 +87,24 @@
     </mat-card-content>
 
     <mat-card-actions>
-      <button type="button" (click)="onClick()" mat-raised-button>
+      <button
+        type="button"
+        (click)="onClick()"
+        mat-raised-button
+        matTooltip="Log In"
+        aria-label="Button to log in"
+      >
         Log In
       </button>
 
       <p class="other-auth-option">
-        Don't have an account? <a routerLink="/signup">Sign Up</a>
+        Don't have an account?
+        <a
+          routerLink="/signup"
+          matTooltip="Go To Sign Up Page"
+          aria-label="Button to navigate to Sign Up Route"
+          >Sign Up</a
+        >
       </p>
     </mat-card-actions>
   </mat-card>
