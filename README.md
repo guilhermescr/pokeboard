@@ -2,6 +2,8 @@
 
 The PokéBoard is a web application built with Angular that provides a user-friendly interface for exploring Pokémon data from the PokéAPI. The dashboard incorporates Angular Material and SCSS to enhance the UI design and provide a visually appealing experience.
 
+#### Access the PokéBoard by [clicking here](https://pokeboard.vercel.app).
+
 ## Login to Home Footage
 
 <img src="src/assets/gifs/pokeBoard-presentation.gif" alt="Login to Home GIF" />
@@ -30,9 +32,6 @@ The PokéBoard is a web application built with Angular that provides a user-frie
 4. **API Integration:** The Pokédex Dashboard interacts with the PokéAPI to fetch Pokémon data dynamically. The application uses HTTP requests to retrieve information such as Pokémon details, abilities, and characteristics, providing a comprehensive view of each Pokémon.
 
 ## Setup and Usage
-
-<p>Access the PokéBoard by [clicking here](https://pokeboard.vercel.app/).</p>
-**OR**
 
 To set up and run the Pokédex Dashboard locally, follow these steps:
 
