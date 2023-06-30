@@ -31,6 +31,9 @@ The PokéBoard is a web application built with Angular that provides a user-frie
 
 ## Setup and Usage
 
+<p>Access the PokéBoard by [clicking here](https://pokeboard.vercel.app/).</p>
+**OR**
+
 To set up and run the Pokédex Dashboard locally, follow these steps:
 
 1. Clone the repository or download the project files.
@@ -44,9 +47,6 @@ To set up and run the Pokédex Dashboard locally, follow these steps:
 5. Run **ng serve** to start the development server.
 
 6. Open your web browser and visit **http://localhost:4200** to access the PokéBoard.
-
-**OR**
-Access the project by [clicking here](https://pokeboard.vercel.app/).
 
 ## Contributing
 
